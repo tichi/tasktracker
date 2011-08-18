@@ -40,6 +40,9 @@
     <Reference Include="Ionic.Zip">
       <HintPath>_bin_deployableAssemblies\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json.Net35">
       <HintPath>_bin_deployableAssemblies\Newtonsoft.Json.Net35.dll</HintPath>
     </Reference>
