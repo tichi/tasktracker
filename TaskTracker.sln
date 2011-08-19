@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Web Developer Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker", "TaskTracker\TaskTracker.csproj", "{DA9BC513-EF4A-45C8-831C-C86EEF21268E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTrackerTests", "TaskTrackerTests\TaskTrackerTests.csproj", "{6DC80031-C951-48CF-89F7-FDD0588201F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTrackerUnitTests", "TaskTrackerTests\TaskTrackerUnitTests.csproj", "{6DC80031-C951-48CF-89F7-FDD0588201F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTrackerIntegrationTests", "TaskTrackerIntegrationTests\TaskTrackerIntegrationTests.csproj", "{D3510164-5F6B-4D92-A643-3368BC63C5B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,10 @@ Global
 		{6DC80031-C951-48CF-89F7-FDD0588201F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC80031-C951-48CF-89F7-FDD0588201F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DC80031-C951-48CF-89F7-FDD0588201F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3510164-5F6B-4D92-A643-3368BC63C5B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3510164-5F6B-4D92-A643-3368BC63C5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3510164-5F6B-4D92-A643-3368BC63C5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3510164-5F6B-4D92-A643-3368BC63C5B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
