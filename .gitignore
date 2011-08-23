@@ -4,3 +4,4 @@ bin
 *.user
 TestResult.xml
 *.VisualState.xml
+*.Publish.xml
