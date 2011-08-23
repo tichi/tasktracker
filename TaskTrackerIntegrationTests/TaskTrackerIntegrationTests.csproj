@@ -80,6 +80,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\HomeTests.cs" />
+    <Compile Include="FireFox 3.6\HomeTests.cs" />
+    <Compile Include="FireFox 4.0\HomeTests.cs" />
+    <Compile Include="FireFox 5.0\HomeTests.cs" />
+    <Compile Include="FireFox Current\HomeTests.cs" />
+    <Compile Include="IE\HomeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +100,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
