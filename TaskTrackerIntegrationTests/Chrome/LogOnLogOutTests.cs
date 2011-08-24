@@ -12,7 +12,7 @@ namespace TaskTrackerIntegrationTests.Chrome
 {
     [TestFixture]
     [Category("Chrome")]
-    class HomeTests : TaskTrackerIntegrationTests.Base.HomeTests
+    class LogOnLogOutTests : TaskTrackerIntegrationTests.Base.LogOnLogOutTests
     {
         IWebDriver driver;
 
@@ -23,11 +23,19 @@ namespace TaskTrackerIntegrationTests.Chrome
         }
 
         [Test]
-        public void DefaultURL_RoutesToHomeIndex()
+        public void HomeIndex_LogIn_LogOut()
         {
             driver = new ChromeDriver();
 
-            base.DefaultURL_RoutesToHomeIndex(driver);
+            base.HomeIndex_LogIn_LogOut(driver);
+        }
+
+        [Test]
+        public void HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication()
+        {
+            driver = new ChromeDriver();
+
+            base.HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication(driver);
         }
     }
 }

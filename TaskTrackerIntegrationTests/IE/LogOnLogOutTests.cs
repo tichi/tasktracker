@@ -7,13 +7,12 @@ using NUnit.Framework;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Remote;
 
 namespace TaskTrackerIntegrationTests.IE
 {
     [TestFixture]
     [Category("IE")]
-    class HomeTests : TaskTrackerIntegrationTests.Base.HomeTests
+    class LogOnLogOutTests : TaskTrackerIntegrationTests.Base.LogOnLogOutTests
     {
         IWebDriver driver;
 
@@ -24,11 +23,19 @@ namespace TaskTrackerIntegrationTests.IE
         }
 
         [Test]
-        public void DefaultURL_RoutesToHomeIndex()
+        public void HomeIndex_LogIn_LogOut()
         {
             driver = new InternetExplorerDriver();
 
-            base.DefaultURL_RoutesToHomeIndex(driver);
+            base.HomeIndex_LogIn_LogOut(driver);
+        }
+
+        [Test]
+        public void HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication()
+        {
+            driver = new InternetExplorerDriver();
+
+            base.HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication(driver);
         }
     }
 }

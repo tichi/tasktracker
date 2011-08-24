@@ -7,16 +7,16 @@ using NUnit.Framework;
 
 using OpenQA.Selenium;
 
-namespace TaskTrackerIntegrationTests
+namespace TaskTrackerIntegrationTests.Base
 {
     abstract class HomeTests
     {
         protected void DefaultURL_RoutesToHomeIndex(IWebDriver driver)
         {
-            // Arrange and Act
+            // Navigate to the base url.
             driver.Navigate().GoToUrl("http://localhost:8085/");
 
-            // Assert
+            // Assert that the title is that of the Home/Index page.
             Assert.That(driver.Title, Is.EqualTo("Task Tracker - Home"));
         }
     }

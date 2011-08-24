@@ -12,7 +12,7 @@ namespace TaskTrackerIntegrationTests.FireFox4
 {
     [TestFixture]
     [Category("FireFox")]
-    class HomeTests : TaskTrackerIntegrationTests.Base.HomeTests
+    class LogOnLogOutTests : TaskTrackerIntegrationTests.Base.LogOnLogOutTests
     {
         IWebDriver driver;
 
@@ -23,13 +23,23 @@ namespace TaskTrackerIntegrationTests.FireFox4
         }
 
         [Test]
-        public void DefaultURL_RoutesToHomeIndex()
+        public void HomeIndex_LogIn_LogOut()
         {
             FirefoxBinary binary = new FirefoxBinary("C:\\Program Files\\Mozilla Firefox 4.0\\firefox.exe");
             FirefoxProfile profile = new FirefoxProfile();
             driver = new FirefoxDriver(binary, profile);
 
-            base.DefaultURL_RoutesToHomeIndex(driver);
+            base.HomeIndex_LogIn_LogOut(driver);
+        }
+
+        [Test]
+        public void HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication()
+        {
+            FirefoxBinary binary = new FirefoxBinary("C:\\Program Files\\Mozilla Firefox 4.0\\firefox.exe");
+            FirefoxProfile profile = new FirefoxProfile();
+            driver = new FirefoxDriver(binary, profile);
+
+            base.HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication(driver);
         }
     }
 }
