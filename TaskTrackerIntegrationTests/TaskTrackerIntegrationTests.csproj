@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\HomeTests.cs" />
+    <Compile Include="Chrome\HomeTests.cs" />
     <Compile Include="FireFox 3.6\HomeTests.cs" />
     <Compile Include="FireFox 4.0\HomeTests.cs" />
     <Compile Include="FireFox 5.0\HomeTests.cs" />
@@ -89,6 +90,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="_bin_deployableAssemblies\Castle.Core.dll" />
     <Content Include="_bin_deployableAssemblies\Ionic.Zip.dll" />
     <Content Include="_bin_deployableAssemblies\Newtonsoft.Json.Net35.dll" />
