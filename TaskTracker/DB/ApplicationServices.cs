@@ -15,7 +15,7 @@ namespace TaskTracker.DB
 
         public static void InstallServices(SqlFeatures sqlFeatures)
         {
-            SqlServices.Install(myBuilder.InitialCatalog, sqlFeatures, connectionString);
+            //SqlServices.Install(myBuilder.InitialCatalog, sqlFeatures, connectionString);
         }
 
         public static void UninstallServices(SqlFeatures sqlFeatures)
