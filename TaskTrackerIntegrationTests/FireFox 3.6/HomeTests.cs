@@ -16,20 +16,24 @@ namespace TaskTrackerIntegrationTests.FireFox3_6
     {
         IWebDriver driver;
 
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            this.browserType = Base.BROWSER_TYPE.FireFox3_6;
+        }
+
         [TearDown]
         public void TearDown()
         {
-            driver.Quit();
+            this.driver.Quit();
         }
 
         [Test]
         public void DefaultURL_RoutesToHomeIndex()
         {
-            FirefoxBinary binary = new FirefoxBinary("C:\\Program Files\\Mozilla Firefox 3.6\\firefox.exe");
-            FirefoxProfile profile = new FirefoxProfile();
-            driver = new FirefoxDriver(binary, profile);
+            this.driver = this.CreateDriver();
 
-            base.DefaultURL_RoutesToHomeIndex(driver);
+            base.DefaultURL_RoutesToHomeIndex(this.driver);
         }
     }
 }

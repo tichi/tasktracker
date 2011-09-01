@@ -16,20 +16,24 @@ namespace TaskTrackerIntegrationTests.FireFox5
     {
         IWebDriver driver;
 
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            this.browserType = Base.BROWSER_TYPE.FireFox5;
+        }
+
         [TearDown]
         public void TearDown()
         {
-            driver.Quit();
+            this.driver.Quit();
         }
 
         [Test]
         public void DefaultURL_RoutesToHomeIndex()
         {
-            FirefoxBinary binary = new FirefoxBinary("C:\\Program Files\\Mozilla Firefox 5.0\\firefox.exe");
-            FirefoxProfile profile = new FirefoxProfile();
-            driver = new FirefoxDriver(binary, profile);
+            this.driver = this.CreateDriver();
 
-            base.DefaultURL_RoutesToHomeIndex(driver);
+            base.DefaultURL_RoutesToHomeIndex(this.driver);
         }
     }
 }

@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BasicTestFixture.cs" />
     <Compile Include="Base\HomeTests.cs" />
     <Compile Include="Base\LogOnLogOutTests.cs" />
     <Compile Include="Chrome\LogOnLogOutTests.cs" />

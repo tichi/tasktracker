@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace TaskTrackerIntegrationTests.Base
 {
-    abstract class LogOnLogOutTests
+    abstract class LogOnLogOutTests : BasicTestFixture
     {
         protected void HomeIndex_LogIn_LogOut(IWebDriver driver)
         {

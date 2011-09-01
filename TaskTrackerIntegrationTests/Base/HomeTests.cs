@@ -9,7 +9,7 @@ using OpenQA.Selenium;
 
 namespace TaskTrackerIntegrationTests.Base
 {
-    abstract class HomeTests
+    abstract class HomeTests : BasicTestFixture
     {
         protected void DefaultURL_RoutesToHomeIndex(IWebDriver driver)
         {

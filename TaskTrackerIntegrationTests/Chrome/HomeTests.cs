@@ -16,18 +16,24 @@ namespace TaskTrackerIntegrationTests.Chrome
     {
         IWebDriver driver;
 
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            this.browserType = Base.BROWSER_TYPE.Chrome;
+        }
+
         [TearDown]
         public void TearDown()
         {
-            driver.Quit();
+            this.driver.Quit();
         }
 
         [Test]
         public void DefaultURL_RoutesToHomeIndex()
         {
-            driver = new ChromeDriver();
+            this.driver = this.CreateDriver();
 
-            base.DefaultURL_RoutesToHomeIndex(driver);
+            base.DefaultURL_RoutesToHomeIndex(this.driver);
         }
     }
 }

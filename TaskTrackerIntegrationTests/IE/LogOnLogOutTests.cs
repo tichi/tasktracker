@@ -16,26 +16,32 @@ namespace TaskTrackerIntegrationTests.IE
     {
         IWebDriver driver;
 
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            this.browserType = Base.BROWSER_TYPE.InternetExplorer;
+        }
+
         [TearDown]
         public void TearDown()
         {
-            driver.Quit();
+            this.driver.Quit();
         }
 
         [Test]
         public void HomeIndex_LogIn_LogOut()
         {
-            driver = new InternetExplorerDriver();
+            this.driver = this.CreateDriver();
 
-            base.HomeIndex_LogIn_LogOut(driver);
+            base.HomeIndex_LogIn_LogOut(this.driver);
         }
 
         [Test]
         public void HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication()
         {
-            driver = new InternetExplorerDriver();
+            this.driver = this.CreateDriver();
 
-            base.HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication(driver);
+            base.HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication(this.driver);
         }
     }
 }

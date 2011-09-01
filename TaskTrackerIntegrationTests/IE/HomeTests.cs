@@ -17,18 +17,24 @@ namespace TaskTrackerIntegrationTests.IE
     {
         IWebDriver driver;
 
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            this.browserType = Base.BROWSER_TYPE.InternetExplorer;
+        }
+
         [TearDown]
         public void TearDown()
         {
-            driver.Quit();
+            this.driver.Quit();
         }
 
         [Test]
         public void DefaultURL_RoutesToHomeIndex()
         {
-            driver = new InternetExplorerDriver();
+            this.driver = this.CreateDriver();
 
-            base.DefaultURL_RoutesToHomeIndex(driver);
+            base.DefaultURL_RoutesToHomeIndex(this.driver);
         }
     }
 }
