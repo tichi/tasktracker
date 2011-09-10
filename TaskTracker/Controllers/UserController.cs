@@ -29,8 +29,8 @@ namespace TaskTracker.Controllers
 
         public UserController(IFormsAuthentication formsAuth, IMembershipService membershipService)
         {
-            FormsAuth = formsAuth ?? new FormsAuthenticationService();
-            MembershipService = membershipService ?? new UserMembershipService();
+            this.FormsAuth = formsAuth ?? new FormsAuthenticationService();
+            this.MembershipService = membershipService ?? new UserMembershipService();
         }
 
         //
@@ -47,29 +47,29 @@ namespace TaskTracker.Controllers
         [HttpPost]
         public ActionResult LogOn(UserLogOnViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return View("LogOn", model);
             }
 
             if (String.IsNullOrEmpty(model.UserName))
             {
-                ModelState.AddModelError("UserName", "UserName is required.");
+                this.ModelState.AddModelError("UserName", "UserName is required.");
             }
 
             if (String.IsNullOrEmpty(model.Password))
             {
-                ModelState.AddModelError("Password", "Password is required.");
+                this.ModelState.AddModelError("Password", "Password is required.");
             }
 
-            if (MembershipService.ValidateUser(model.UserName, model.Password))
+            if (this.MembershipService.ValidateUser(model.UserName, model.Password))
             {
-                FormsAuth.SetAuthCookie(model.UserName, true);
+                this.FormsAuth.SetAuthCookie(model.UserName, true);
 
                 return Redirect("~/");
             }
 
-            ModelState.AddModelError("_FORM", "Invalid username or password.");
+            this.ModelState.AddModelError("_FORM", "Invalid username or password.");
             return View("LogOn", model);
         }
 
@@ -78,7 +78,7 @@ namespace TaskTracker.Controllers
 
         public ActionResult LogOff()
         {
-            FormsAuth.SignOut();
+            this.FormsAuth.SignOut();
 
             return Redirect("~/");
         }
