@@ -12,7 +12,7 @@ namespace TaskTrackerIntegrationTests.FireFox5
 {
     [TestFixture]
     [Category("FireFox")]
-    class HomeTests : TaskTrackerIntegrationTests.Base.HomeTests
+    class LogOnLogOutTests : TaskTrackerIntegrationTests.Base.LogOnLogOutTests
     {
         IWebDriver driver;
 
@@ -29,11 +29,19 @@ namespace TaskTrackerIntegrationTests.FireFox5
         }
 
         [Test]
-        public void DefaultURL_RoutesToHomeIndex()
+        public void HomeIndex_LogIn_LogOut()
         {
             this.driver = this.CreateDriver();
 
-            base.DefaultURL_RoutesToHomeIndex(this.driver);
+            base.HomeIndex_LogIn_LogOut(this.driver);
+        }
+
+        [Test]
+        public void HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication()
+        {
+            this.driver = this.CreateDriver();
+
+            base.HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication(this.driver);
         }
     }
 }

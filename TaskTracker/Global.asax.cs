@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+
+using TaskTracker.DB;
 
 namespace TaskTracker
 {
@@ -26,7 +29,6 @@ namespace TaskTracker
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
         }
 
         protected void Application_Start()
@@ -35,6 +37,20 @@ namespace TaskTracker
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            if (ApplicationServices.GetInitialCatalog() != "tasktracker")
+            {
+                Database.SetInitializer(new TaskTrackerDropCreateDatabaseIfModelChanges());
+            }
+            else
+            {
+                Database.SetInitializer(new TaskTrackerCreateDatabaseIfNotExists());
+            }
+
+            using (var db = new TaskTrackerContext())
+            {
+                db.Database.Initialize(false);
+            }
         }
     }
 }
