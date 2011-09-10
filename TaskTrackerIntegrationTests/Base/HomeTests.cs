@@ -15,6 +15,7 @@ namespace TaskTrackerIntegrationTests.Base
         {
             // Navigate to the base url.
             driver.Navigate().GoToUrl("http://localhost:8085/");
+            Wait();
 
             // Assert that the title is that of the Home/Index page.
             Assert.That(driver.Title, Is.EqualTo("Task Tracker - Home"));

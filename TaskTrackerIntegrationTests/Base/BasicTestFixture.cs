@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -14,6 +15,19 @@ namespace TaskTrackerIntegrationTests.Base
     abstract class BasicTestFixture
     {
         protected BROWSER_TYPE browserType;
+        protected int waitTime;
+
+        public BasicTestFixture()
+        {
+            if (File.Exists(@"C:\Program Files\Mozilla Firefox 3.6\firefox.exe"))
+            {
+                this.waitTime = 2000;
+            }
+            else
+            {
+                this.waitTime = 500;
+            }
+        }
 
         protected IWebDriver CreateDriver()
         {
@@ -63,6 +77,11 @@ namespace TaskTrackerIntegrationTests.Base
                 default:
                     return null;
             }
+        }
+
+        protected void Wait()
+        {
+            Thread.Sleep(this.waitTime);
         }
     }
 
