@@ -30,7 +30,7 @@ namespace TaskTrackerIntegrationTests.Base
                     }
                     else
                     {
-                        binary = new FirefoxBinary(@"D:\Program Files (x86)\Mozilla Firefox 3.6\firefox.exe");
+                        binary = new FirefoxBinary(@"G:\Program Files (x86) SSD\Mozilla Firefox 3.6\firefox.exe");
                     }
                     profile = new FirefoxProfile();
                     return new FirefoxDriver(binary, profile);
@@ -41,7 +41,7 @@ namespace TaskTrackerIntegrationTests.Base
                     }
                     else
                     {
-                        binary = new FirefoxBinary(@"D:\Program Files (x86)\Mozilla Firefox 4.0\firefox.exe");
+                        binary = new FirefoxBinary(@"G:\Program Files (x86) SSD\Mozilla Firefox 4.0\firefox.exe");
                     }
                     profile = new FirefoxProfile();
                     return new FirefoxDriver(binary, profile);
@@ -52,7 +52,7 @@ namespace TaskTrackerIntegrationTests.Base
                     }
                     else
                     {
-                        binary = new FirefoxBinary(@"D:\Program Files (x86)\Mozilla Firefox 5.0\firefox.exe");
+                        binary = new FirefoxBinary(@"G:\Program Files (x86) SSD\Mozilla Firefox 5.0\firefox.exe");
                     }
                     profile = new FirefoxProfile();
                     return new FirefoxDriver(binary, profile);
