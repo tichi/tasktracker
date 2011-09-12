@@ -16,9 +16,21 @@ using TaskTracker.Models.ViewModels;
 
 namespace TaskTrackerTests.Controller
 {
+    /**
+     * \brief Unit tests for the UserController.
+     * \author Katharine Gillis
+     * \2011-09-11
+     * 
+     * Defines the unit tests for the UserController class.
+     */
     [TestFixture]
     class UserControllerTests
     {
+        /**
+         * \brief Test for the LogOn method returning the LogOn View.
+         * 
+         * Defines the unit test that runs the LogOn method, expecting the LogOn View to be returned.
+         */
         [Test]
         public void LogOn_Get_ReturnsLogOnView()
         {
@@ -37,6 +49,11 @@ namespace TaskTrackerTests.Controller
             Assert.That(viewResult.ViewData.ModelState.IsValid, Is.True);
         }
 
+        /**
+         * \brief Test for the LogOn method returning the LogOn View with model errors.
+         * 
+         * Defines the unit test that runs the LogOn method with an invalid model, expecting the LogOn view to be returned with model errors.
+         */
         [Test]
         public void LogOn_PostWithInvalidModelState_ReturnsLogOnViewWithModelErrors()
         {
@@ -59,6 +76,11 @@ namespace TaskTrackerTests.Controller
             Assert.That(viewResult.ViewData.ModelState.IsValid, Is.False);
         }
 
+        /**
+         * \brief Test for the LogOn method returning the LogOn View with model errors.
+         * 
+         * Defines the unit test that runs the LogOn method with an invalid user, expecting the LogOn view to be returned with model errors.
+         */
         [Test]
         public void LogOn_PostWithInvalidUserNameValidPassword_ReturnsLogOnViewWithModelErrors()
         {
@@ -88,6 +110,11 @@ namespace TaskTrackerTests.Controller
             Assert.That(viewResult.ViewData.ModelState.IsValid, Is.False);
         }
 
+        /**
+         * \brief Test for the LogOn method returning the LogOn view with model errors.
+         * 
+         * Defines the unit test that runs the LogOn method with a valid user and an invalid password, expecting the LogOn view to be returned with model errors.
+         */
         [Test]
         public void LogOn_PostWithValidUserNameInvalidPassword_ReturnsLogOnViewWithModelErrors()
         {
@@ -118,6 +145,11 @@ namespace TaskTrackerTests.Controller
             Assert.That(viewResult.ViewData.ModelState.IsValid, Is.False);
         }
 
+        /**
+         * \brief Test for the LogOn method redirecting to the default url.
+         * 
+         * Defines the unit test that runs the LogOn method with a valid user and a valid password, expecting a redirect to the default url.
+         */
         [Test]
         public void LogOn_PostWithValidUserAndPassword_RedirectsToDefault()
         {
@@ -148,6 +180,11 @@ namespace TaskTrackerTests.Controller
             Assert.That(redirectResult.Url, Is.EqualTo("~/"));
         }
 
+        /**
+         * \brief Test for the LogOff method redirecting to the default url.
+         * 
+         * Defines the unit test that runs the LogOff method when a user is not authenticated, expecting a redirect to the default url.
+         */
         [Test]
         public void LogOff_GetWithUnauthenticatedUser_RedirectsToDefault()
         {
@@ -172,6 +209,11 @@ namespace TaskTrackerTests.Controller
             Assert.That(redirectResult.Url, Is.EqualTo("~/"));
         }
 
+        /**
+         * \brief Test for the LogOff method redirecting to the default url.
+         * 
+         * Defines the unit test that runs the LogOff method when a user is authenticated, expecting a redirect to the default url.
+         */
         [Test]
         public void LogOff_GetWithAuthenticatedUser_RedirectsToDefault()
         {

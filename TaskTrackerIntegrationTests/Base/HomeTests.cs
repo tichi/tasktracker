@@ -9,8 +9,26 @@ using OpenQA.Selenium;
 
 namespace TaskTrackerIntegrationTests.Base
 {
+    /**
+     * \brief Integration tests for the Home page.
+     * \author Katharine Gillis
+     * \date 2011-09-10
+     * 
+     * Defines the integration tests run for the Home page.
+     */
     abstract class HomeTests : BasicTestFixture
     {
+        /**
+         * \brief Default url test.
+         * 
+         * Tests that the default url properly goes to /Home/Index.
+         * 
+         * Steps:
+         *  -# Navigate to http://localhost:8085.
+         *  -# The page title should be "Task Tracker - Home".
+         *  
+         * \param driver The browser driver to use.
+         */
         protected void DefaultURL_RoutesToHomeIndex(IWebDriver driver)
         {
             // Navigate to the base url.

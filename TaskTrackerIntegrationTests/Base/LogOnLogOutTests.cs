@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 
 using OpenQA.Selenium;
 
@@ -10,8 +9,36 @@ using NUnit.Framework;
 
 namespace TaskTrackerIntegrationTests.Base
 {
+    /**
+     * \brief Integration tests for the authentication functionality.
+     * \author Katharine Gillis
+     * \date 2011-09-10
+     * 
+     * Defines the integration tests for logging in and logging out.
+     */
     abstract class LogOnLogOutTests : BasicTestFixture
     {
+        /**
+         * \brief Valid log in and log out test.
+         * 
+         * Tests that a valid user can log in and log out.
+         * 
+         * Steps:
+         *  -# Navigate to http://localhost:8085.
+         *  -# Click the Log On link.
+         *  -# The page title should be "Task Tracker - Log On".
+         *  -# Enter the following information:
+         *      - User Name: testuser
+         *      - Password: password
+         *  -# Click the Log On button.
+         *  -# The page title should be "Task Tracker - Home".
+         *  -# The Log On link should be replaced with a welcome message and the Log Off link.
+         *  -# Click the Log Off link.
+         *  -# The page title should be "Task Tracker - Home".
+         *  -# The welcome message and Log Off link should be replaced with the Log On link.
+         *  
+         * \param driver The browser driver to use.
+         */
         protected void HomeIndex_LogIn_LogOut(IWebDriver driver)
         {
             // Navigate to the base url.
@@ -63,6 +90,30 @@ namespace TaskTrackerIntegrationTests.Base
             Assert.That(driver.PageSource.Contains("Welcome, test user!"), Is.False);
         }
 
+        /**
+         * \brief Invalid log in test.
+         * 
+         * Tests that an invalid user or password can't get to the secure content.
+         * 
+         * Steps:
+         *  -# Navigate to http://localhost:8085.
+         *  -# Click on the Log On link.
+         *  -# The page title should be "Task Tracker - Log On".
+         *  -# Click the Log On button, leaving the User Name and Password fields blank.
+         *  -# Error messages "User Name is required." and "Password is required." should appear.
+         *  -# Enter the following information:
+         *      - User Name: invaliduser
+         *      - Password: password
+         *  -# Click the Log On button.
+         *  -# Error message "Invalid username or password." should appear, while the required error messages should disappear.
+         *  -# Enter the following information:
+         *      - User Name: testuser
+         *      - Password: invalidpassword
+         *  -# Click the Log On button.
+         *  -# Error message "Invalid username or password." should appear.
+         *  
+         * \param driver The browser driver to use.
+         */
         protected void HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication(IWebDriver driver)
         {
             // Navigate to the base url.
@@ -83,7 +134,7 @@ namespace TaskTrackerIntegrationTests.Base
             Wait();
 
             // Check that two error messages come up indicating that UserName and Password are required.
-            Assert.That(driver.PageSource.Contains("UserName is required."), Is.True);
+            Assert.That(driver.PageSource.Contains("User Name is required."), Is.True);
             Assert.That(driver.PageSource.Contains("Password is required."), Is.True);
 
             // Enter an invalid user name and a valid password.
@@ -97,6 +148,10 @@ namespace TaskTrackerIntegrationTests.Base
             logOn = driver.FindElement(By.Id("LogOn"));
             logOn.Click();
             Wait();
+
+            // Check that the two required error messages disappeared.
+            Assert.That(driver.PageSource.Contains("User Name is required."), Is.False);
+            Assert.That(driver.PageSource.Contains("Password is required."), Is.False);
 
             // Check that the invalid logon message came up.
             Assert.That(driver.PageSource.Contains("Invalid username or password."), Is.True);

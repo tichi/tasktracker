@@ -11,39 +11,77 @@ using TaskTracker.Models.ViewModels;
 
 namespace TaskTracker.Controllers
 {
+    /**
+     * \brief Controls the user pages.
+     * \author Katharine Gillis
+     * \date
+     * 
+     * Defines the actions for the user pages.
+     */
     public class UserController : Controller
     {
+        /**
+         * \brief Serves the membership functionality.
+         * 
+         * Serves the membership functionality for the controller. By default, it is the MembershipProvider defined in Web.config.
+         */
         public IMembershipService MembershipService
         {
             get;
             private set;
         }
 
+        /**
+         * \brief Serves the authentication functionality.
+         * 
+         * Serves the authentication functionality for the controller. By default, it is the FormsAuthentication.
+         */
         public IFormsAuthentication FormsAuth
         {
             get;
             private set;
         }
 
+        /**
+         * \brief Default constructor.
+         * 
+         * Used by the MVC framework, and sets the MembershipService and FormsAuth as the defaults.
+         */
         public UserController() : this(null, null) { }
 
+        /**
+         * \brief Testing constructor.
+         * 
+         * Used in testing, to allow injection of mocked authentication and membership services.
+         * 
+         * \param formsAuth The mocked authentication service, or null for the default.
+         * \param membershipService The mocked membership service, or null for the default.
+         */
         public UserController(IFormsAuthentication formsAuth, IMembershipService membershipService)
         {
             this.FormsAuth = formsAuth ?? new FormsAuthenticationService();
             this.MembershipService = membershipService ?? new UserMembershipService();
         }
 
-        //
-        // GET: /User/LogOn
-
+        /**
+         * \brief LogOn action.
+         * 
+         * Returns the LogOn view.
+         * 
+         * GET: /User/Logon
+         */
         public ActionResult LogOn()
         {
             return View("LogOn");
         }
 
-        //
-        // POST: /User/LogOn
-
+        /**
+         * \brief LogOn action.
+         * 
+         * If the model state is invalid, or the username and password do not validate, the LogOn view is returned with model errors. Otherwise a redirect action to the default url is returned.
+         * 
+         * POST: /User/Logon
+         */
         [HttpPost]
         public ActionResult LogOn(UserLogOnViewModel model)
         {

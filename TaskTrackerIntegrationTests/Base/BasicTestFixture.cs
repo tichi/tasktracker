@@ -12,11 +12,23 @@ using OpenQA.Selenium.IE;
 
 namespace TaskTrackerIntegrationTests.Base
 {
+    /**
+     * \brief Basic test fixture that all test fixtures inherit.
+     * \author Katharine Gillis
+     * \date 2011-09-10
+     * 
+     * Defines the basic, common methods used by all test fixtures in this assembly.
+     */
     abstract class BasicTestFixture
     {
         protected BROWSER_TYPE browserType;
         protected int waitTime;
 
+        /**
+         * \brief Default constructor.
+         * 
+         * Sets the wait time based on the machine the assembly is running on.
+         */
         public BasicTestFixture()
         {
             if (File.Exists(@"C:\Program Files\Mozilla Firefox 3.6\firefox.exe"))
@@ -29,6 +41,11 @@ namespace TaskTrackerIntegrationTests.Base
             }
         }
 
+        /**
+         * \brief Creates the web driver.
+         * 
+         * Used to create the browser driver for the tests, based on the browser type.
+         */
         protected IWebDriver CreateDriver()
         {
             FirefoxBinary binary;
@@ -79,11 +96,22 @@ namespace TaskTrackerIntegrationTests.Base
             }
         }
 
+        /**
+         * \brief Pauses the test for a preset amount of time.
+         * 
+         * Used to force a test to wait, primarily for browser pages to finish loading.
+         * The wait time is determined when the test fixture is constructed.
+         */
         protected void Wait()
         {
             Thread.Sleep(this.waitTime);
         }
     }
 
+    /**
+     * \brief Browser enum.
+     * 
+     * A list of browsers available to test with.
+     */
     public enum BROWSER_TYPE { Chrome, FireFox3_6, FireFox4, FireFox5, FireFoxCurrent, InternetExplorer };
 }

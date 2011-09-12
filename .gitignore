@@ -1,3 +1,4 @@
+
 obj
 bin
 *.suo
@@ -5,3 +6,4 @@ bin
 TestResult.xml
 *.VisualState.xml
 *.Publish.xml
+documentation
