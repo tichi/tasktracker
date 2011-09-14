@@ -7,3 +7,4 @@ TestResult.xml
 *.VisualState.xml
 *.Publish.xml
 documentation
+docgen.doxygen

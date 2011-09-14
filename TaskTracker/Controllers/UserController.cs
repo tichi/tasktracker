@@ -36,7 +36,7 @@ namespace TaskTracker.Controllers
          * 
          * Serves the authentication functionality for the controller. By default, it is the FormsAuthentication.
          */
-        public IFormsAuthentication FormsAuth
+        public IAuthentication Auth
         {
             get;
             private set;
@@ -57,10 +57,10 @@ namespace TaskTracker.Controllers
          * \param formsAuth The mocked authentication service, or null for the default.
          * \param membershipService The mocked membership service, or null for the default.
          */
-        public UserController(IFormsAuthentication formsAuth, IMembershipService membershipService)
+        public UserController(IAuthentication auth, IMembershipService membershipService)
         {
-            this.FormsAuth = formsAuth ?? new FormsAuthenticationService();
-            this.MembershipService = membershipService ?? new UserMembershipService();
+            this.Auth = auth ?? new FormsAuthenticationService { UsePersistentCookies = true };
+            this.MembershipService = membershipService ?? new MembershipService();
         }
 
         /**
@@ -102,7 +102,7 @@ namespace TaskTracker.Controllers
 
             if (this.MembershipService.ValidateUser(model.UserName, model.Password))
             {
-                this.FormsAuth.SetAuthCookie(model.UserName, true);
+                this.Auth.SignIn(model.UserName);
 
                 return Redirect("~/");
             }
@@ -111,54 +111,133 @@ namespace TaskTracker.Controllers
             return View("LogOn", model);
         }
 
-        //
-        // GET: /User/LogOff
+        /**
+         * \brief LogOff action.
+         * 
+         * Signs an authenticated user out, and redirects to the default url.
+         * 
+         * GET: /User/LogOff
+         */
 
         public ActionResult LogOff()
         {
-            this.FormsAuth.SignOut();
+            this.Auth.SignOut();
 
             return Redirect("~/");
         }
 
     }
 
+    /**
+     * \brief Membership services interface.
+     * \author Katharine Gillis
+     * \date 2011-09-13
+     * 
+     * Defines the basic required members for a class to be considered a Membership service.
+     */
     public interface IMembershipService
     {
+        /**
+         * \brief Determine if a username and password are valid.
+         * 
+         * Returns whether or not the username and password are valid.
+         * 
+         * \param userName The username.
+         * \param password The password.
+         * 
+         * \return True if the user is valid, otherwise false.
+         */
         bool ValidateUser(string userName, string password);
     }
 
-    public class UserMembershipService : IMembershipService
+    /**
+     * \brief Membership services that use the Membership Provider.
+     * \author Katharine Gillis
+     * \date 2011-09-13
+     * 
+     * Defines a membership service that uses the Membership Provider as its data source.
+     */
+    public class MembershipService : IMembershipService
     {
-        private MembershipProvider provider;
-
-        public UserMembershipService() : this(null) { }
-
-        public UserMembershipService(MembershipProvider provider)
-        {
-            this.provider = provider ?? Membership.Provider;
-        }
-
+        /**
+         * \brief Determine if a username and password are valid.
+         * 
+         * Returns whether or not the username and password are valid.
+         * 
+         * \param userName The username.
+         * \param password The password.
+         * 
+         * \return True if the user is valid, otherwise false.
+         */
         public bool ValidateUser(string userName, string password)
         {
-            return this.provider.ValidateUser(userName, password);
+            return Membership.ValidateUser(userName, password);
         }
     }
 
-    public interface IFormsAuthentication
+    /**
+     * \brief Authentication service.
+     * \author Katharine Gillis
+     * \date 2011-09-13
+     * 
+     * Defines the basic required members of a authentication service.
+     */
+    public interface IAuthentication
     {
-        void SetAuthCookie(string userName, bool createPersistentCookie);
+        /**
+         * \brief Store an authenticated user.
+         * 
+         * Store authentication information for the given user.
+         * 
+         * \param userName The username.
+         */
+        void SignIn(string userName);
 
+        /**
+         * \brief Sign out the authenticated user.
+         * 
+         * Sign out the authenticated user.
+         */
         void SignOut();
     }
 
-    public class FormsAuthenticationService : IFormsAuthentication
+    /**
+     * \brief Authentication service that uses FormsAuthentication.
+     * \author Katharine Gillis
+     * \date 2011-09-13
+     * 
+     * Defines an authentication service that uses FormsAuthentication to store authenticated users.
+     */
+    public class FormsAuthenticationService : IAuthentication
     {
-        public void SetAuthCookie(string userName, bool createPersistentCookie)
+        /**
+         * \brief Get or set whether to use persistent cookies.
+         * 
+         * Get or set whether to use persisten cookies.
+         */
+        public bool UsePersistentCookies
         {
-            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
+            get;
+            set;
         }
 
+        /**
+         * \brief Store an authenticated user.
+         * 
+         * Store authentication information for the given user in an encrypted cookie.
+         * 
+         * \param userName The username.
+         */
+        public void SignIn(string userName)
+        {
+            FormsAuthentication.SetAuthCookie(userName, this.UsePersistentCookies);
+        }
+
+        /**
+         * \brief Sign out the authenticated user.
+         * 
+         * Sign out the authenticated user using FormsAuthentication.
+         */
         public void SignOut()
         {
             FormsAuthentication.SignOut();
