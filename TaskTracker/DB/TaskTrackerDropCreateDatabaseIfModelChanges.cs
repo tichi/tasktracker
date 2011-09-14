@@ -9,13 +9,22 @@ using System.Web.Security;
 
 namespace TaskTracker.DB
 {
+    /**
+     * \brief Initializer that drops and recreates the database.
+     * \author Katharine Gillis
+     * \date 2011-09-14
+     * 
+     * If the model in code is different than the model defined in the database, the database is dropped and recreated.
+     */
     public class TaskTrackerDropCreateDatabaseIfModelChanges : DropCreateDatabaseIfModelChanges<TaskTrackerContext>
     {
+        /**
+         * \brief Defines the seed data for the recreated database.
+         *
+         * Adds the seed data after the database is recreated, based on which database is in use.
+         */
         protected override void Seed(TaskTrackerContext context)
         {
-            // Set up the membership, roles, and profile systems.
-            ApplicationServices.InstallServices(SqlFeatures.Membership | SqlFeatures.Profile | SqlFeatures.RoleManager);
-
             // Create the default accounts and roles.
             if (ApplicationServices.GetInitialCatalog() == "tasktracker_testing")
             {
