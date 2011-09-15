@@ -6,8 +6,20 @@ using System.Web.Profile;
 
 namespace TaskTracker.Models.Domain
 {
+    /**
+     * \brief Serves the profile information for a user.
+     * \author Katharine Gillis
+     * \date 2011-09-15
+     * 
+     * Creates a strong model for the user profiles, with a datasource of the ProfileProvider.
+     */
     public class Profile : ProfileBase
     {
+        /**
+         * \brief Gte or set the user's first name.
+         * 
+         * Get or set the user's first name.
+         */
         public virtual string FirstName
         {
             get
@@ -20,6 +32,11 @@ namespace TaskTracker.Models.Domain
             }
         }
 
+        /**
+         * \brief Get or set the user's last name.
+         * 
+         * Get or set the user's last name.
+         */
         public virtual string LastName
         {
             get
@@ -32,6 +49,11 @@ namespace TaskTracker.Models.Domain
             }
         }
 
+        /**
+         * \brief Get or set the user's time zone.
+         * 
+         * Get or set the user's time zone.
+         */
         public virtual string TimeZone
         {
             get
@@ -44,6 +66,11 @@ namespace TaskTracker.Models.Domain
             }
         }
 
+        /**
+         * \brief Get the specified user's profile.
+         * 
+         * Factory method for profiles. Returns the profile for the specified user.
+         */
         public static Profile GetProfile(string username)
         {
             return Create(username) as Profile;

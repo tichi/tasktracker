@@ -4,12 +4,20 @@ using System.Collections.Generic;
 
 namespace System.Web.Mvc.Html
 {
+    /**
+     * \brief Extends the ValidationSummary class.
+     * \author Katharine Gillis
+     * \date 2011-09-15
+     * 
+     * Extends the ValidationSummary class.
+     */
     public static class ValidationSummaryExtension
     {
-        /// <summary>
-        /// Creates a validation summary with a container element 
-        /// surrounding the summary and error messages.
-        /// </summary>        
+        /**
+         * \brief Generate a validation summary with alert css.
+         * 
+         * Generates a validation summary using alert css from the jQuery ui.
+         */
         public static IHtmlString ValidationSummaryAlert(this HtmlHelper ext, string selector, bool excludeProperties, string message)
         {
             StringBuilder output = new StringBuilder();

@@ -54,7 +54,7 @@ namespace TaskTracker.Controllers
          * 
          * Used in testing, to allow injection of mocked authentication and membership services.
          * 
-         * \param formsAuth The mocked authentication service, or null for the default.
+         * \param auth The mocked authentication service, or null for the default.
          * \param membershipService The mocked membership service, or null for the default.
          */
         public UserController(IAuthentication auth, IMembershipService membershipService)
@@ -213,7 +213,7 @@ namespace TaskTracker.Controllers
         /**
          * \brief Get or set whether to use persistent cookies.
          * 
-         * Get or set whether to use persisten cookies.
+         * Get or set whether to use persistent cookies.
          */
         public bool UsePersistentCookies
         {

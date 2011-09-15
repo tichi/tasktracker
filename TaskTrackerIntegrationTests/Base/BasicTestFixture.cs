@@ -21,7 +21,18 @@ namespace TaskTrackerIntegrationTests.Base
      */
     abstract class BasicTestFixture
     {
+        /**
+         * \brief The browser type for the test fixture.
+         * 
+         * The browser type for the test fixture.
+         */
         protected BROWSER_TYPE browserType;
+
+        /**
+         * \brief The wait time (in milliseconds) for the Wait function.
+         * 
+         * The wait time (in milliseconds) for the Wait function.
+         */
         protected int waitTime;
 
         /**

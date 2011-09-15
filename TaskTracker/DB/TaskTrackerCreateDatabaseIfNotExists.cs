@@ -20,6 +20,8 @@ namespace TaskTracker.DB
          * \brief Defines the seed data for the database.
          * 
          * Adds the seed data to the database after it has been created.
+         * 
+         * \param context The database context.
          */
         protected override void Seed(TaskTrackerContext context)
         {
