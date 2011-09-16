@@ -8,3 +8,4 @@ TestResult.xml
 *.Publish.xml
 documentation
 docgen.doxygen
+TaskTracker/Web*.config
