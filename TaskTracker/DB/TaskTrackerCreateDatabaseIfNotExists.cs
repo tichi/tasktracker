@@ -41,7 +41,6 @@ namespace TaskTracker.DB
                 Membership.CreateUser("admin", adminPassword, "gillis.katharine@gmail.com");
                 MembershipUser user = Membership.GetUser("admin", false);
                 user.IsApproved = true;
-                
 
                 Profile profile = Profile.GetProfile("admin");
                 profile.FirstName = "Admin";

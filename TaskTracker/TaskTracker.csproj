@@ -148,17 +148,32 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Debug.config">
+    <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Release.config">
+    </None>
+    <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
-    </Content>
+    </None>
+    <None Include="Web.config.new">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.config.Debug.new">
+      <DependentUpon>Web.config.new</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.config.Release.new">
+      <DependentUpon>Web.config.new</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -175,10 +190,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
-    <Content Include="Web.Testing.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <None Include="Web.config.Testing.new">
+      <DependentUpon>Web.config.new</DependentUpon>
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <Content Include="Views\User\LogOn.cshtml" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
