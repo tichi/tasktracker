@@ -93,6 +93,7 @@
     <Compile Include="Base\BasicTestFixture.cs" />
     <Compile Include="Base\HomeTests.cs" />
     <Compile Include="Base\LogOnLogOutTests.cs" />
+    <Compile Include="Base\UserDetailViewTests.cs" />
     <Compile Include="Chrome\LogOnLogOutTests.cs" />
     <Compile Include="Chrome\HomeTests.cs" />
     <Compile Include="FireFox 3.6\HomeTests.cs" />
