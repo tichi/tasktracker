@@ -107,7 +107,7 @@ namespace TaskTracker.Controllers
                 return Redirect("~/");
             }
 
-            this.ModelState.AddModelError("_FORM", "Invalid username or password.");
+            this.ModelState.AddModelError("_FORM", "Invalid user name or password.");
             return View("LogOn", model);
         }
 

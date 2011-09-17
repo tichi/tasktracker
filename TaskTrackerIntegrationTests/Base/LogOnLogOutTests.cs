@@ -73,7 +73,7 @@ namespace TaskTrackerIntegrationTests.Base
             
             IWebElement logOutLink = driver.FindElement(By.XPath("//a[text()='Log Off']"));
 
-            Assert.That(driver.PageSource.Contains("Welcome, test user!"), Is.True);
+            IWebElement welcomeMessage = driver.FindElement(By.XPath("//span[@welcome=''][text()='Welcome, test user!']"));
 
             // Click the Log Out link.
             logOutLink.Click();
@@ -87,7 +87,7 @@ namespace TaskTrackerIntegrationTests.Base
 
             Assert.Throws<NoSuchElementException>(() => driver.FindElement(By.XPath("//a[text()='Log Off']")));
 
-            Assert.That(driver.PageSource.Contains("Welcome, test user!"), Is.False);
+            Assert.Throws<NoSuchElementException>(() => driver.FindElement(By.XPath("//span[@welcome=''][text()='Welcome, test user!']")));
         }
 
         /**
@@ -154,7 +154,7 @@ namespace TaskTrackerIntegrationTests.Base
             passwordErrorMessage = driver.FindElement(By.XPath("//span[@class='field-validation-valid'][@data-valmsg-for='Password']"));
 
             // Check that the invalid logon message came up.
-            Assert.That(driver.PageSource.Contains("Invalid username or password."), Is.True);
+            IWebElement invalidLoginAlert = driver.FindElement(By.XPath("//span[@alert=''][text()='Invalid user name or password.']"));
 
             // Enter a valid user name and an invalid password.
             userName = driver.FindElement(By.Id("UserName"));
@@ -171,7 +171,7 @@ namespace TaskTrackerIntegrationTests.Base
             Wait();
 
             // Check that the invalid logon message came up.
-            Assert.That(driver.PageSource.Contains("Invalid username or password."), Is.True);
+            invalidLoginAlert = driver.FindElement(By.XPath("//span[@alert=''][text()='Invalid user name or password.']"));
         }
     }
 }

@@ -18,7 +18,7 @@ namespace System.Web.Mvc.Html
          * 
          * Generates a validation summary using alert css from the jQuery ui.
          */
-        public static IHtmlString ValidationSummaryAlert(this HtmlHelper ext, string selector, bool excludeProperties, string message)
+        public static IHtmlString ValidationSummaryAlert(this HtmlHelper ext, string selector, bool excludeProperties = false, string message = "")
         {
             StringBuilder output = new StringBuilder();
             if (ext.ViewData.ModelState.IsValid) {
