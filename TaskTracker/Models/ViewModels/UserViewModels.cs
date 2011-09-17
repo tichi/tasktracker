@@ -20,7 +20,7 @@ namespace TaskTracker.Models.ViewModels
          * 
          * Get or set the username.
          */
-        [Required(ErrorMessage = "UserName is required.")]
+        [Required(ErrorMessage = "User Name is required.")]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
 

@@ -92,7 +92,7 @@ namespace TaskTracker.Controllers
 
             if (String.IsNullOrEmpty(model.UserName))
             {
-                this.ModelState.AddModelError("UserName", "UserName is required.");
+                this.ModelState.AddModelError("UserName", "User Name is required.");
             }
 
             if (String.IsNullOrEmpty(model.Password))

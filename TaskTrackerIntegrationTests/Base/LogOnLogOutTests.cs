@@ -134,8 +134,8 @@ namespace TaskTrackerIntegrationTests.Base
             Wait();
 
             // Check that two error messages come up indicating that UserName and Password are required.
-            Assert.That(driver.PageSource.Contains("User Name is required."), Is.True);
-            Assert.That(driver.PageSource.Contains("Password is required."), Is.True);
+            IWebElement userNameErrorMessage = driver.FindElement(By.XPath("//span[@class='field-validation-error'][@data-valmsg-for='UserName']"));
+            IWebElement passwordErrorMessage = driver.FindElement(By.XPath("//span[@class='field-validation-error'][@data-valmsg-for='Password']"));
 
             // Enter an invalid user name and a valid password.
             IWebElement userName = driver.FindElement(By.Id("UserName"));
@@ -150,8 +150,8 @@ namespace TaskTrackerIntegrationTests.Base
             Wait();
 
             // Check that the two required error messages disappeared.
-            Assert.That(driver.PageSource.Contains("User Name is required."), Is.False);
-            Assert.That(driver.PageSource.Contains("Password is required."), Is.False);
+            userNameErrorMessage = driver.FindElement(By.XPath("//span[@class='field-validation-valid'][@data-valmsg-for='UserName']"));
+            passwordErrorMessage = driver.FindElement(By.XPath("//span[@class='field-validation-valid'][@data-valmsg-for='Password']"));
 
             // Check that the invalid logon message came up.
             Assert.That(driver.PageSource.Contains("Invalid username or password."), Is.True);
