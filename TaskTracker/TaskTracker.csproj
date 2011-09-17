@@ -88,6 +88,31 @@
     <Compile Include="Models\Mapper\Mapper.cs" />
     <Compile Include="Models\ViewModels\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Models\User\NameStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NameStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\User\ValidationStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Home\HomeStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Shared\SharedStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SharedStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\User\UserStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\ValidationSummaryAlert.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,7 +228,33 @@
     <None Include="_bin_deployableAssemblies\System.Web.Helpers.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Models\User\NameStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NameStrings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ModelRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\User\ValidationStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationStrings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ModelRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Home\HomeStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeStrings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Shared\SharedStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedStrings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\User\UserStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserStrings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>ViewRes</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

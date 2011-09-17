@@ -20,8 +20,8 @@ namespace TaskTracker.Models.ViewModels
          * 
          * Get or set the username.
          */
-        [Required(ErrorMessage = "User Name is required.")]
-        [Display(Name = "User Name")]
+        [Required(ErrorMessageResourceType=typeof(ModelRes.ValidationStrings), ErrorMessageResourceName="Required")]
+        [Display(Name="LogOnUserName", ResourceType=typeof(ModelRes.NameStrings))]
         public string UserName { get; set; }
 
         /**
@@ -29,9 +29,9 @@ namespace TaskTracker.Models.ViewModels
          * 
          * Get or set the password.
          */
-        [Required(ErrorMessage = "Password is required.")]
+        [Required(ErrorMessageResourceType = typeof(ModelRes.ValidationStrings), ErrorMessageResourceName = "Required")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name="LogOnPassword", ResourceType=typeof(ModelRes.NameStrings))]
         public string Password { get; set; }
     }
 }

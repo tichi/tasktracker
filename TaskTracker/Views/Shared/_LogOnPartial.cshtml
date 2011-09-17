@@ -1,10 +1,9 @@
 ﻿@using TaskTracker.Models.Domain;
 @if(Request.IsAuthenticated) {
     Profile profile = Profile.GetProfile(User.Identity.Name);
-    string welcome = "Welcome, " + profile.FirstName + " " + profile.LastName + "!";
-    <span welcome>@welcome</span> @:[ @Html.ActionLink("Log Off", "LogOff", "User") ]
+    <span welcome>@String.Format(ViewRes.SharedStrings.Welcome, profile.FirstName, profile.LastName)</span> @:[ @Html.ActionLink(ViewRes.SharedStrings.LogOff, "LogOff", "User") ]
 }
 else
 {
-    @:[ @Html.ActionLink("Log On", "LogOn", "User") ]
+    @:[ @Html.ActionLink(ViewRes.SharedStrings.LogOn, "LogOn", "User") ]
 }

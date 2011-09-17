@@ -35,8 +35,9 @@ namespace TaskTrackerIntegrationTests.Base
             driver.Navigate().GoToUrl("http://localhost:8085/");
             Wait();
 
-            // Assert that the title is that of the Home/Index page.
+            // Assert that the title is that of the Home/Index page and that the welcome message appears.
             Assert.That(driver.Title, Is.EqualTo("Task Tracker - Home"));
+            IWebElement welcomeMessage = driver.FindElement(By.XPath("//span[@welcome=''][text()='Welcome to Task Tracker!']"));
         }
     }
 }

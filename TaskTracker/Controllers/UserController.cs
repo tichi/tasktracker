@@ -92,12 +92,13 @@ namespace TaskTracker.Controllers
 
             if (String.IsNullOrEmpty(model.UserName))
             {
-                this.ModelState.AddModelError("UserName", "User Name is required.");
+                this.ModelState.AddModelError("UserName", String.Format(ModelRes.ValidationStrings.Required, ModelRes.NameStrings.LogOnUserName));
+                
             }
 
             if (String.IsNullOrEmpty(model.Password))
             {
-                this.ModelState.AddModelError("Password", "Password is required.");
+                this.ModelState.AddModelError("Password", String.Format(ModelRes.ValidationStrings.Required, ModelRes.NameStrings.LogOnPassword));
             }
 
             if (this.MembershipService.ValidateUser(model.UserName, model.Password))
@@ -107,7 +108,7 @@ namespace TaskTracker.Controllers
                 return Redirect("~/");
             }
 
-            this.ModelState.AddModelError("_FORM", "Invalid user name or password.");
+            this.ModelState.AddModelError("_FORM", ModelRes.ValidationStrings.InvalidLogOn);
             return View("LogOn", model);
         }
 

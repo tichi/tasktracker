@@ -1,7 +1,7 @@
 ﻿@model TaskTracker.Models.ViewModels.UserLogOnViewModel
 
 @{
-    ViewBag.Title = "Log On";
+    ViewBag.Title = ViewRes.UserStrings.LogOnTitle;
 }
 
 <!-- JQuery Validation Plugin -->
@@ -42,7 +42,7 @@
                 </td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: right;"><input type="submit" name="LogOn" id="LogOn" value="Log On" /></td>
+				<td colspan="2" style="text-align: right;"><input type="submit" name="LogOn" id="LogOn" value="@ViewRes.UserStrings.LogOnButton" /></td>
 			</tr>
 		</table>
     }
