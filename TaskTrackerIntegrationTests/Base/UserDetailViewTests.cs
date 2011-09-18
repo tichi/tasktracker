@@ -90,7 +90,7 @@ namespace TaskTrackerIntegrationTests.Base
             IWebElement emailSpan = driver.FindElement(By.XPath("//span[@id='Email'][text()='testuser@test.com']"));
 
             // Check that the time zone is "(GMT-07:00) Arizona".
-            IWebElement timeZoneSpan = driver.FindElement(By.XPath("//span[@id='TimeZone'][text()='(GMT-07:00) Arizona']"));
+            IWebElement timeZoneSpan = driver.FindElement(By.XPath("//span[@id='TimeZone'][text()='(UTC-07:00) Arizona']"));
 
             // Click the Log Off link.
             IWebElement logOffLink = driver.FindElement(By.XPath("//a[text()='Log Off']"));
@@ -166,7 +166,7 @@ namespace TaskTrackerIntegrationTests.Base
             IWebElement emailSpan = driver.FindElement(By.XPath("//span[@id='Email'][text()='testuser2@test.com']"));
 
             // Check that the time zone is "(GMT-07:00) Arizona".
-            IWebElement timeZoneSpan = driver.FindElement(By.XPath("//span[@id='TimeZone'][text()='(GMT-07:00) Arizona']"));
+            IWebElement timeZoneSpan = driver.FindElement(By.XPath("//span[@id='TimeZone'][text()='(UTC-07:00) Arizona']"));
 
             // Click the Log Off link.
             IWebElement logOffLink = driver.FindElement(By.XPath("//a[text()='Log Off']"));

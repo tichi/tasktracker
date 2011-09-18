@@ -97,8 +97,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\HomeControllerTests.cs" />
-    <Compile Include="Controller\UserControllerTests.cs" />
+    <Compile Include="Controllers\HomeControllerTests.cs" />
+    <Compile Include="Controllers\UserControllerTests.cs" />
+    <Compile Include="Models\ModelMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +120,7 @@
     <Content Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
     <Content Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

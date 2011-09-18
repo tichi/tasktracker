@@ -139,13 +139,14 @@ namespace TaskTracker.Controllers
         [Authorize]
         public ActionResult Detail(string id)
         {
-            User user = (User)MembershipService.GetUser(id);
+            IUser user = this.MembershipService.GetUser(id);
             if (user == null)
             {
                 throw new NoSuchRecordException();
             }
 
-            UserDetailViewModel model = (new ModelMapper<User, UserDetailViewModel>()).Map(user);
+            UserDetailViewModel model = (new ModelMapper<IUser, UserDetailViewModel>()).Map(user);
+            return View("Detail", model);
         }
 
     }

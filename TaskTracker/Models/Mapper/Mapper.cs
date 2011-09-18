@@ -18,33 +18,24 @@ namespace TaskTracker.Models.Mapper
 
         public D Map(S source)
         {
-            if (typeof(S) == typeof(User))
+            if (typeof(S) == typeof(IUser))
             {
-                User user = source as User;
+                IUser user = source as IUser;
                 if (typeof(D) == typeof(UserDetailViewModel))
                 {
-                    return this.MapUserToUserDetailViewModel(user) as D;
+                    return this.MapIUserToUserDetailViewModel(user) as D;
                 }
             }
             throw new MappingException("Unknown mapping, " + typeof(S).ToString() + " to " + typeof(D).ToString());
         }
 
-        private UserDetailViewModel MapUserToUserDetailViewModel(User user)
+        private UserDetailViewModel MapIUserToUserDetailViewModel(IUser user)
         {
             UserDetailViewModel model = new UserDetailViewModel();
             model.UserName = user.UserName;
             model.FirstName = user.FirstName;
             model.LastName = user.LastName;
             model.Email = user.Email;
-
-            /*List<Role> roles = (from r in user.Roles
-                                orderby r.Name
-                                select r).ToList();
-            model.Roles = roles;
-            model.Id = user.Id;
-            model.Active = user.Active;
-            model.Creator = user.Creator;
-            model.Modifier = user.Modifier;*/
 
             TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById(user.TimeZone);
             model.TimeZone = tzi.DisplayName;

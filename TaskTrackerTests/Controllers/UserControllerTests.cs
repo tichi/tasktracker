@@ -278,7 +278,7 @@ namespace TaskTrackerTests.Controller
             mockIUser.Setup(m => m.Email).Returns("testuser@test.com");
             mockIUser.Setup(m => m.FirstName).Returns("test");
             mockIUser.Setup(m => m.LastName).Returns("user");
-            mockIUser.Setup(m => m.TimeZone).Returns("US Mountain Standard");
+            mockIUser.Setup(m => m.TimeZone).Returns("US Mountain Standard Time");
 
             mockIMembershipService.Setup(m => m.GetUser("testuser", false)).Returns(mockIUser.Object);
 
@@ -294,7 +294,7 @@ namespace TaskTrackerTests.Controller
                 Email = "testuser@test.com",
                 FirstName = "test",
                 LastName = "user",
-                TimeZone = "(GMT-07:00) Arizona"
+                TimeZone = "(UTC-07:00) Arizona"
             };
 
             // Act
