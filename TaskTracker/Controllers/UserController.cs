@@ -8,6 +8,7 @@ using System.Web.Security;
 
 using TaskTracker.DB;
 using TaskTracker.Models.Domain;
+using TaskTracker.Models.Mapper;
 using TaskTracker.Models.ViewModels;
 using TaskTracker.Utils;
 
@@ -138,7 +139,13 @@ namespace TaskTracker.Controllers
         [Authorize]
         public ActionResult Detail(string id)
         {
-            throw new NotImplementedException();
+            User user = (User)MembershipService.GetUser(id);
+            if (user == null)
+            {
+                throw new NoSuchRecordException();
+            }
+
+            UserDetailViewModel model = (new ModelMapper<User, UserDetailViewModel>()).Map(user);
         }
 
     }

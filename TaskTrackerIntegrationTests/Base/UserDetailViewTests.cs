@@ -21,7 +21,7 @@ namespace TaskTrackerIntegrationTests.Base
         /**
          * \brief Any user can get to their own user detail view from all pages.
          * 
-         * When logged in, any user can navigate to their own user's detail view using the link in the navigation bar. A user with no roles will show that they have none.
+         * When logged in, any user can navigate to their own user's detail view using the link in the navigation bar.
          * 
          * Steps
          *  -# Navigate to http://localhost:8085.
@@ -38,7 +38,6 @@ namespace TaskTrackerIntegrationTests.Base
          *  -# The Last Name should be "user".
          *  -# The Email should be "testuser@test.com".
          *  -# The Time Zone should be "(GMT-07:00) Arizona".
-         *  -# The Roles should list "This user has no roles.".
          *  -# Click the Log Off link.
          */
         protected void AnyUser_CanNavigateToOwnUserDetailViewFromNavigationBar(IWebDriver driver)
@@ -93,9 +92,6 @@ namespace TaskTrackerIntegrationTests.Base
             // Check that the time zone is "(GMT-07:00) Arizona".
             IWebElement timeZoneSpan = driver.FindElement(By.XPath("//span[@id='TimeZone'][text()='(GMT-07:00) Arizona']"));
 
-            // Check that no roles are listed, and instead it lists "This user has no roles.".
-            IWebElement rolesTable = driver.FindElement(By.XPath("//table[@id='Roles']//td[text()='This user has no roles.']"));
-
             // Click the Log Off link.
             IWebElement logOffLink = driver.FindElement(By.XPath("//a[text()='Log Off']"));
             logOffLink.Click();
@@ -121,7 +117,6 @@ namespace TaskTrackerIntegrationTests.Base
          *  -# The Last Name should be "user2".
          *  -# The Email should be "testuser2@test.com".
          *  -# The Time Zone should be "(GMT-07:00) Arizona".
-         *  -# The Roles should list "TestRole1" and "TestRole2" in alphabetical order.
          *  -# Click the Log Off link.
          */
         protected void AnyUser_CanNavigateToAnyOtherUserDetailView(IWebDriver driver)
@@ -172,11 +167,6 @@ namespace TaskTrackerIntegrationTests.Base
 
             // Check that the time zone is "(GMT-07:00) Arizona".
             IWebElement timeZoneSpan = driver.FindElement(By.XPath("//span[@id='TimeZone'][text()='(GMT-07:00) Arizona']"));
-
-            // Check that "TestRole1" and "TestRole2" are listed in alphabetical order.
-            var rolesTableRows = driver.FindElements(By.XPath("//table[@id='Roles']/tr"));
-            IWebElement testRole1Link = rolesTableRows[0].FindElement(By.XPath("td/a[text()='TestRole1']"));
-            IWebElement testRole2Link = rolesTableRows[1].FindElement(By.XPath("td/a[text()='TestRole2']"));
 
             // Click the Log Off link.
             IWebElement logOffLink = driver.FindElement(By.XPath("//a[text()='Log Off']"));

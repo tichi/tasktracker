@@ -61,6 +61,51 @@ namespace ModelRes {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string DetailEmail {
+            get {
+                return ResourceManager.GetString("DetailEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string DetailFirstName {
+            get {
+                return ResourceManager.GetString("DetailFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string DetailLastName {
+            get {
+                return ResourceManager.GetString("DetailLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Zone.
+        /// </summary>
+        public static string DetailTimeZone {
+            get {
+                return ResourceManager.GetString("DetailTimeZone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Name.
+        /// </summary>
+        public static string DetailUserName {
+            get {
+                return ResourceManager.GetString("DetailUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string LogOnPassword {
