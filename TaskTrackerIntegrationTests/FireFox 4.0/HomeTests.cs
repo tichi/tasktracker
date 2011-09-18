@@ -18,7 +18,7 @@ namespace TaskTrackerIntegrationTests.FireFox4
      * Runs the Home page integration tests on the FireFox 4.0 browser.
      */
     [TestFixture]
-    [Category("FireFox")]
+    [Category("Home")]
     class HomeTests : TaskTrackerIntegrationTests.Base.HomeTests
     {
         IWebDriver driver;

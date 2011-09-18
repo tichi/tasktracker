@@ -19,7 +19,7 @@ namespace TaskTrackerIntegrationTests.IE
      * Runs the Home page integration tests on the Internet Explorer 8.0 browser.
      */
     [TestFixture]
-    [Category("IE")]
+    [Category("Home")]
     class HomeTests : TaskTrackerIntegrationTests.Base.HomeTests
     {
         IWebDriver driver;
@@ -55,7 +55,7 @@ namespace TaskTrackerIntegrationTests.IE
         public void DefaultURL_RoutesToHomeIndex()
         {
             this.driver = this.CreateDriver();
-
+            base.EnsureLoggedOut(this.driver);
             base.DefaultURL_RoutesToHomeIndex(this.driver);
         }
     }

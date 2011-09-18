@@ -18,7 +18,7 @@ namespace TaskTrackerIntegrationTests.Chrome
      * Runs the authentication integration tests on the latest Chrome browser.
      */
     [TestFixture]
-    [Category("Chrome")]
+    [Category("LogOnLogOff")]
     class LogOnLogOutTests : TaskTrackerIntegrationTests.Base.LogOnLogOutTests
     {
         IWebDriver driver;

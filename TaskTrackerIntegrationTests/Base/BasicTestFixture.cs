@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
+using NUnit.Framework;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 
 namespace TaskTrackerIntegrationTests.Base
 {
@@ -116,6 +119,25 @@ namespace TaskTrackerIntegrationTests.Base
         protected void Wait()
         {
             Thread.Sleep(this.waitTime);
+        }
+
+        /**
+         * \brief Ensure the user is logged out for Internet Explorer.
+         * 
+         * Ensure the user is logged out for Internet Explorer.
+         */
+        protected void EnsureLoggedOut(IWebDriver driver)
+        {
+            driver.Navigate().GoToUrl("http://localhost:8085/");
+            Wait();
+
+            try
+            {
+                IWebElement logOutLink = driver.FindElement(By.XPath("//a[text()='Log Off']"));
+                logOutLink.Click();
+                Wait();
+            }
+            catch (NoSuchElementException e) { }
         }
     }
 

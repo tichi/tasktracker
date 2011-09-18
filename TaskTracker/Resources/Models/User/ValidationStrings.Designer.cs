@@ -61,7 +61,7 @@ namespace ModelRes {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid user name and password..
+        ///   Looks up a localized string similar to Invalid user name or password..
         /// </summary>
         public static string InvalidLogOn {
             get {
