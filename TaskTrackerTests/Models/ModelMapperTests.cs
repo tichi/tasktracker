@@ -54,6 +54,7 @@ namespace TaskTrackerTests.Models
             mockIUser.Setup(m => m.FirstName).Returns("test");
             mockIUser.Setup(m => m.LastName).Returns("user");
             mockIUser.Setup(m => m.TimeZone).Returns("US Mountain Standard Time");
+            mockIUser.Setup(m => m.Id).Returns("testuser");
 
             ModelMapper<IUser, UserDetailViewModel> mapper = new ModelMapper<IUser, UserDetailViewModel>();
 
@@ -63,7 +64,8 @@ namespace TaskTrackerTests.Models
                 Email = "testuser@test.com",
                 FirstName = "test",
                 LastName = "user",
-                TimeZone = "(UTC-07:00) Arizona"
+                TimeZone = "(UTC-07:00) Arizona",
+                Id = "testuser"
             };
 
             // Act
@@ -75,6 +77,7 @@ namespace TaskTrackerTests.Models
             Assert.That(result.FirstName, Is.EqualTo(model.FirstName));
             Assert.That(result.LastName, Is.EqualTo(model.LastName));
             Assert.That(result.TimeZone, Is.EqualTo(model.TimeZone));
+            Assert.That(result.Id, Is.EqualTo(model.Id));
         }
     }
 }

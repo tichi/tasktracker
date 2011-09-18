@@ -279,8 +279,9 @@ namespace TaskTrackerTests.Controller
             mockIUser.Setup(m => m.FirstName).Returns("test");
             mockIUser.Setup(m => m.LastName).Returns("user");
             mockIUser.Setup(m => m.TimeZone).Returns("US Mountain Standard Time");
+            mockIUser.Setup(m => m.Id).Returns("11111111-1111-1111-1111-111111111111");
 
-            mockIMembershipService.Setup(m => m.GetUser("testuser", false)).Returns(mockIUser.Object);
+            mockIMembershipService.Setup(m => m.GetUser("11111111-1111-1111-1111-111111111111", false)).Returns(mockIUser.Object);
 
             UserController controller = new UserController(mockIAuthentication.Object, mockIMembershipService.Object);
 
@@ -294,11 +295,12 @@ namespace TaskTrackerTests.Controller
                 Email = "testuser@test.com",
                 FirstName = "test",
                 LastName = "user",
-                TimeZone = "(UTC-07:00) Arizona"
+                TimeZone = "(UTC-07:00) Arizona",
+                Id = "11111111-1111-1111-1111-111111111111"
             };
 
             // Act
-            ActionResult result = controller.Detail("testuser");
+            ActionResult result = controller.Detail("11111111-1111-1111-1111-111111111111");
 
             // Assert
             Assert.That(result, Is.InstanceOf(typeof(ViewResult)));

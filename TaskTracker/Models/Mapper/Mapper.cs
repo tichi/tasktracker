@@ -36,6 +36,7 @@ namespace TaskTracker.Models.Mapper
             model.FirstName = user.FirstName;
             model.LastName = user.LastName;
             model.Email = user.Email;
+            model.Id = user.Id;
 
             TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById(user.TimeZone);
             model.TimeZone = tzi.DisplayName;

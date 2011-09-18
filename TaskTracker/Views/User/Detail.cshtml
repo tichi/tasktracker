@@ -1,0 +1,59 @@
+﻿@model TaskTracker.Models.ViewModels.UserDetailViewModel
+
+@{
+    ViewBag.Title = String.Format(ViewRes.UserStrings.DetailTitle, Model.FirstName, Model.LastName);
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#user_details').styleTable({
+            'noMouseOver': true
+        });
+
+        $('#delete-confirm').dialog({
+            resizable: false,
+            height: 175,
+            modal: true,
+            buttons: {
+                'Delete User': function () {
+                    $(this).dialog('close');
+                    $('form[name="deleteForm"]').submit();
+                },
+                Cancel: function () {
+                    $(this).dialog('close');
+                }
+            },
+            autoOpen: false
+        });
+    });
+</script>
+<style type="text/css">
+	td {
+		vertical-align: top;
+	}
+</style>
+<table id="user_details" style="width: 75%;margin-left: auto; margin-right: auto;" cellspacing="0">
+	<thead>
+		<tr>
+			<th colspan="4">@String.Format(ViewRes.UserStrings.DetailTitle, Model.FirstName, Model.LastName)</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="width: 10%; min-width: 100px;">@Html.LabelFor(m => m.UserName)</td>
+			<td style="width: 40%; min-width: 400px;"><span id="UserName">@Html.DisplayFor(m => m.UserName)</span></td>
+			<td style="width: 10%; min-width: 100px;">@Html.LabelFor(m => m.Email)</td>
+			<td style="width: 40%; min-width: 400px;"><span id="Email">@Html.DisplayFor(m => m.Email)</span></td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(m => m.FirstName)</td>
+			<td><span id="FirstName">@Html.DisplayFor(m => m.FirstName)</span></td>
+			<td>@Html.LabelFor(m => m.LastName)</td>
+			<td><span id="LastName">@Html.DisplayFor(m => m.LastName)</span></td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(m => m.TimeZone)</td>
+			<td colspan="3"><span id="TimeZone">@Html.DisplayFor(model => model.TimeZone)</span></td>
+		</tr>
+	</tbody>
+</table>

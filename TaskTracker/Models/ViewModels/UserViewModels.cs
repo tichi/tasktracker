@@ -83,5 +83,12 @@ namespace TaskTracker.Models.ViewModels
          */
         [Display(Name = "DetailTimeZone", ResourceType = typeof(ModelRes.UserNameStrings))]
         public string TimeZone { get; set; }
+
+        /**
+         * \brief Get or set the id.
+         * 
+         * Get or set the id.
+         */
+        public string Id { get; set; }
     }
 }

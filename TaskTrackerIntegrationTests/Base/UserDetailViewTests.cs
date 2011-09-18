@@ -37,7 +37,7 @@ namespace TaskTrackerIntegrationTests.Base
          *  -# The First Name should be "test".
          *  -# The Last Name should be "user".
          *  -# The Email should be "testuser@test.com".
-         *  -# The Time Zone should be "(GMT-07:00) Arizona".
+         *  -# The Time Zone should be "(UTC-07:00) Arizona".
          *  -# Click the Log Off link.
          */
         protected void AnyUser_CanNavigateToOwnUserDetailViewFromNavigationBar(IWebDriver driver)
@@ -89,7 +89,7 @@ namespace TaskTrackerIntegrationTests.Base
             // Check that the email is "testuser@test.com".
             IWebElement emailSpan = driver.FindElement(By.XPath("//span[@id='Email'][text()='testuser@test.com']"));
 
-            // Check that the time zone is "(GMT-07:00) Arizona".
+            // Check that the time zone is "(UTC-07:00) Arizona".
             IWebElement timeZoneSpan = driver.FindElement(By.XPath("//span[@id='TimeZone'][text()='(UTC-07:00) Arizona']"));
 
             // Click the Log Off link.
@@ -110,13 +110,13 @@ namespace TaskTrackerIntegrationTests.Base
          *      - User Name: testuser
          *      - Password: password
          *  -# Click the Log On button.
-         *  -# Navigate to http://localhost:8085/User/Detail/testuser2
+         *  -# Navigate to http://localhost:8085/User/Detail/22222222-2222-2222-2222-222222222222
          *  -# The page title should be "Task Tracker - User Details - test user2".
          *  -# The User Name should be "testuser2".
          *  -# The First Name should be "test".
          *  -# The Last Name should be "user2".
          *  -# The Email should be "testuser2@test.com".
-         *  -# The Time Zone should be "(GMT-07:00) Arizona".
+         *  -# The Time Zone should be "(UTC-07:00) Arizona".
          *  -# Click the Log Off link.
          */
         protected void AnyUser_CanNavigateToAnyOtherUserDetailView(IWebDriver driver)
@@ -147,7 +147,7 @@ namespace TaskTrackerIntegrationTests.Base
             Wait();
 
             // Navigate to testuser2's detail view.
-            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/testuser2");
+            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/22222222-2222-2222-2222-222222222222");
             Wait();
 
             // Check that the page title is "Task Tracker - User Details - test user2".
@@ -165,7 +165,7 @@ namespace TaskTrackerIntegrationTests.Base
             // Check that the email is "testuser2@test.com".
             IWebElement emailSpan = driver.FindElement(By.XPath("//span[@id='Email'][text()='testuser2@test.com']"));
 
-            // Check that the time zone is "(GMT-07:00) Arizona".
+            // Check that the time zone is "(UTC-07:00) Arizona".
             IWebElement timeZoneSpan = driver.FindElement(By.XPath("//span[@id='TimeZone'][text()='(UTC-07:00) Arizona']"));
 
             // Click the Log Off link.
@@ -194,7 +194,7 @@ namespace TaskTrackerIntegrationTests.Base
             Wait();
 
             // Navigate to testuser2's detail view.
-            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/testuser2");
+            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/22222222-2222-2222-2222-222222222222");
             Wait();
 
             // Check that the page title is "Task Tracker - Log On".

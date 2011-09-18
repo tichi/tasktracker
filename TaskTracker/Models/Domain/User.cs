@@ -16,9 +16,9 @@ namespace TaskTracker.Models.Domain
     public interface IUser
     {
         /**
-         * \brief Get or set the UserName.
+         * \brief Get the UserName.
          * 
-         * Get or set the UserName.
+         * Get the UserName.
          */
         string UserName { get; }
 
@@ -48,6 +48,13 @@ namespace TaskTracker.Models.Domain
          * Get or set the TimeZone.
          */
         string TimeZone { get; set; }
+
+        /**
+         * \brief Get the Id.
+         * 
+         * Get the Id.
+         */
+        string Id { get; }
     }
 
     /**
@@ -74,9 +81,9 @@ namespace TaskTracker.Models.Domain
         }
 
         /**
-         * \brief Get or set the UserName.
+         * \brief Get the UserName.
          * 
-         * Get or set the UserName.
+         * Get the UserName.
          */
         public string UserName
         {
@@ -153,6 +160,19 @@ namespace TaskTracker.Models.Domain
             {
                 this.profile.TimeZone = value;
                 this.profile.Save();
+            }
+        }
+
+        /**
+         * \brief Get the Id.
+         * 
+         * Get the Id.
+         */
+        public string Id
+        {
+            get
+            {
+                return this.user.ProviderUserKey.ToString();
             }
         }
     }

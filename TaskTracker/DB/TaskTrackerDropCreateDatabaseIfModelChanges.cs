@@ -57,7 +57,7 @@ namespace TaskTracker.DB
                 if (Membership.GetUser("testuser", false) == null)
                 {
                     MembershipCreateStatus status;
-                    Membership.CreateUser("testuser", "password", "testuser@test.com", null, null, true, new Guid("testuser"), out status);
+                    Membership.CreateUser("testuser", "password", "testuser@test.com", null, null, true, new Guid("11111111-1111-1111-1111-111111111111"), out status);
 
                     Profile profile = Profile.GetProfile("testuser");
                     profile.FirstName = "test";
@@ -69,7 +69,7 @@ namespace TaskTracker.DB
                 if (Membership.GetUser("testuser2", false) == null)
                 {
                     MembershipCreateStatus status;
-                    Membership.CreateUser("testuser2", "password", "testuser2@test.com", null, null, true, new Guid("testuser2"), out status);
+                    Membership.CreateUser("testuser2", "password", "testuser2@test.com", null, null, true, new Guid("22222222-2222-2222-2222-222222222222"), out status);
 
                     Profile profile = Profile.GetProfile("testuser2");
                     profile.FirstName = "test";
