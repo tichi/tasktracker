@@ -56,13 +56,24 @@ namespace TaskTracker.DB
             {
                 if (Membership.GetUser("testuser", false) == null)
                 {
-                    Membership.CreateUser("testuser", "password", "testuser@test.com");
-                    MembershipUser user = Membership.GetUser("testuser", false);
-                    user.IsApproved = true;
+                    MembershipCreateStatus status;
+                    Membership.CreateUser("testuser", "password", "testuser@test.com", null, null, true, new Guid("testuser"), out status);
 
                     Profile profile = Profile.GetProfile("testuser");
                     profile.FirstName = "test";
                     profile.LastName = "user";
+                    profile.TimeZone = "US Mountain Standard Time";
+                    profile.Save();
+                }
+
+                if (Membership.GetUser("testuser2", false) == null)
+                {
+                    MembershipCreateStatus status;
+                    Membership.CreateUser("testuser2", "password", "testuser2@test.com", null, null, true, new Guid("testuser2"), out status);
+
+                    Profile profile = Profile.GetProfile("testuser2");
+                    profile.FirstName = "test";
+                    profile.LastName = "user2";
                     profile.TimeZone = "US Mountain Standard Time";
                     profile.Save();
                 }

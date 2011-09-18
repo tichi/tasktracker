@@ -59,9 +59,9 @@ namespace TaskTrackerIntegrationTests.InternetExplorer
         }
 
         /**
-         * \brief Runs the user detail view from navigation bar test with a user that has roles.
+         * \brief Accesses the user detail view of another user.
          * 
-         * This runs the user detail view from navigation bar test with a user that has roles on Internet Explorer 8.0 browser.
+         * Accesses the user detail view of another user on the Internet Explorer 8.0 browser.
          */
         [Test]
         public void AnyUser_CanNavigateToAnyOtherUserDetailView()
@@ -69,6 +69,19 @@ namespace TaskTrackerIntegrationTests.InternetExplorer
             this.driver = this.CreateDriver();
             base.EnsureLoggedOut(this.driver);
             base.AnyUser_CanNavigateToAnyOtherUserDetailView(this.driver);
+        }
+
+        /**
+         * \brief Unauthenticated users are redirected to the Log On page when accessing a user detail view.
+         * 
+         * Unauthenticated users are redirected to the Log On page when accessing a user detail view on Internet Explorer 8.0.
+         */
+        [Test]
+        public void UnauthenticatedUser_IsRedirectedToLogOn()
+        {
+            this.driver = this.CreateDriver();
+            base.EnsureLoggedOut(this.driver);
+            base.UnauthenticatedUser_IsRedirectedToLogOn(this.driver);
         }
     }
 }

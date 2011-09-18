@@ -59,9 +59,9 @@ namespace TaskTrackerIntegrationTests.Chrome
         }
 
         /**
-         * \brief Runs the user detail view from navigation bar test with a user that has roles.
+         * \brief Accesses the user detail view of another user.
          * 
-         * This runs the user detail view from navigation bar test with a user that has roles on the Chrome browser.
+         * Accesses the user detail view of another user on the Chrome browser.
          */
         [Test]
         public void AnyUser_CanNavigateToAnyOtherUserDetailView()
@@ -69,6 +69,19 @@ namespace TaskTrackerIntegrationTests.Chrome
             this.driver = this.CreateDriver();
 
             base.AnyUser_CanNavigateToAnyOtherUserDetailView(this.driver);
+        }
+
+        /**
+         * \brief Unauthenticated users are redirected to the Log On page when accessing a user detail view.
+         * 
+         * Unauthenticated users are redirected to the Log On page when accessing a user detail view on Chrome.
+         */
+        [Test]
+        public void UnauthenticatedUser_IsRedirectedToLogOn()
+        {
+            this.driver = this.CreateDriver();
+
+            base.UnauthenticatedUser_IsRedirectedToLogOn(this.driver);
         }
     }
 }

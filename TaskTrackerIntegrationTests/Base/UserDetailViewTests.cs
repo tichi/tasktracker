@@ -76,7 +76,7 @@ namespace TaskTrackerIntegrationTests.Base
             Wait();
 
             // Check that the page title is "Task Tracker - User Details - test user".
-            Assert.That(driver.Title, Is.EqualTo("Task Tracker - User Detaisl - test user"));
+            Assert.That(driver.Title, Is.EqualTo("Task Tracker - User Details - test user"));
 
             // Check that the user name is "testuser".
             IWebElement userNameSpan = driver.FindElement(By.XPath("//span[@id='UserName'][text()='testuser']"));
@@ -156,7 +156,7 @@ namespace TaskTrackerIntegrationTests.Base
             Wait();
 
             // Check that the page title is "Task Tracker - User Details - test user2".
-            Assert.That(driver.Title, Is.EqualTo("Task Tracker - User Detaisl - test user2"));
+            Assert.That(driver.Title, Is.EqualTo("Task Tracker - User Details - test user2"));
 
             // Check that the user name is "testuser2".
             IWebElement userNameSpan = driver.FindElement(By.XPath("//span[@id='UserName'][text()='testuser2']"));
@@ -182,6 +182,33 @@ namespace TaskTrackerIntegrationTests.Base
             IWebElement logOffLink = driver.FindElement(By.XPath("//a[text()='Log Off']"));
             logOffLink.Click();
             Wait();
+        }
+
+        /**
+         * \brief Unauthorized users cannot access any detail view.
+         * 
+         * When not logged in, the user is redirected back to the Log On page when attempting to access any detail view.
+         * 
+         * Steps
+         *  -# Navigate to http://localhost:8085/User/Detail/testuser2
+         *  -# The page title should be "Task Tracker - Log On".
+         */
+        protected void UnauthenticatedUser_IsRedirectedToLogOn(IWebDriver driver)
+        {
+            // Navigate to the base url.
+            driver.Navigate().GoToUrl("http://localhost:8085/");
+            Wait();
+
+            // Delete all cookies on the profile.
+            driver.Manage().Cookies.DeleteAllCookies();
+            Wait();
+
+            // Navigate to testuser2's detail view.
+            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/testuser2");
+            Wait();
+
+            // Check that the page title is "Task Tracker - Log On".
+            Assert.That(driver.Title, Is.EqualTo("Task Tracker - Log On"));
         }
     }
 }

@@ -7,7 +7,9 @@ using System.Web.Mvc;
 using System.Web.Security;
 
 using TaskTracker.DB;
+using TaskTracker.Models.Domain;
 using TaskTracker.Models.ViewModels;
+using TaskTracker.Utils;
 
 namespace TaskTracker.Controllers
 {
@@ -92,13 +94,13 @@ namespace TaskTracker.Controllers
 
             if (String.IsNullOrEmpty(model.UserName))
             {
-                this.ModelState.AddModelError("UserName", String.Format(ModelRes.ValidationStrings.Required, ModelRes.NameStrings.LogOnUserName));
+                this.ModelState.AddModelError("UserName", String.Format(ModelRes.UserValidationStrings.Required, ModelRes.UserNameStrings.LogOnUserName));
                 
             }
 
             if (String.IsNullOrEmpty(model.Password))
             {
-                this.ModelState.AddModelError("Password", String.Format(ModelRes.ValidationStrings.Required, ModelRes.NameStrings.LogOnPassword));
+                this.ModelState.AddModelError("Password", String.Format(ModelRes.UserValidationStrings.Required, ModelRes.UserNameStrings.LogOnPassword));
             }
 
             if (this.MembershipService.ValidateUser(model.UserName, model.Password))
@@ -108,7 +110,7 @@ namespace TaskTracker.Controllers
                 return Redirect("~/");
             }
 
-            this.ModelState.AddModelError("_FORM", ModelRes.ValidationStrings.InvalidLogOn);
+            this.ModelState.AddModelError("_FORM", ModelRes.UserValidationStrings.InvalidLogOn);
             return View("LogOn", model);
         }
 
@@ -119,12 +121,24 @@ namespace TaskTracker.Controllers
          * 
          * GET: /User/LogOff
          */
-
         public ActionResult LogOff()
         {
             this.Auth.SignOut();
 
             return Redirect("~/");
+        }
+
+        /**
+         * \brief Detail view action.
+         * 
+         * Displays the requested user's detail view.
+         * 
+         * GET: /Detail/{id}
+         */
+        [Authorize]
+        public ActionResult Detail(string id)
+        {
+            throw new NotImplementedException();
         }
 
     }
@@ -149,6 +163,15 @@ namespace TaskTracker.Controllers
          * \return True if the user is valid, otherwise false.
          */
         bool ValidateUser(string userName, string password);
+
+        /**
+         * \brief Get a MembershipUser.
+         * 
+         * \param userId The user's ProviderUserKey.
+         * 
+         * \return A MembershipUser of the given key, or null if not found.
+         */
+        IUser GetUser(string userId, bool userIsOnline = false);
     }
 
     /**
@@ -173,6 +196,18 @@ namespace TaskTracker.Controllers
         public bool ValidateUser(string userName, string password)
         {
             return Membership.ValidateUser(userName, password);
+        }
+
+        /**
+         * \brief Get a MembershipUser.
+         * 
+         * \param userId The user's ProviderUserKey.
+         * 
+         * \return A MembershipUser of the given key, or null if not found.
+         */
+        public IUser GetUser(string userId, bool userIsOnline = false)
+        {
+            return new User(Membership.GetUser(new Guid(userId), userIsOnline));
         }
     }
 
