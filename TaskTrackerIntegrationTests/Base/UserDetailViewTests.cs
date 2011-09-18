@@ -41,7 +41,7 @@ namespace TaskTrackerIntegrationTests.Base
          *  -# The Roles should list "This user has no roles.".
          *  -# Click the Log Off link.
          */
-        protected void AnyUserWithoutRoles_CanNavigateToOwnUserDetailViewFromNavigationBar(IWebDriver driver)
+        protected void AnyUser_CanNavigateToOwnUserDetailViewFromNavigationBar(IWebDriver driver)
         {
             // Navigate to the base url.
             driver.Navigate().GoToUrl("http://localhost:8085/");
@@ -103,19 +103,18 @@ namespace TaskTrackerIntegrationTests.Base
         }
 
         /**
-         * \brief Any user can get to their own user detail view from all pages.
+         * \brief Any user can view any other user's detail view.
          * 
-         * When logged in, any user can navigate to their own user's detail view using the link in the navigation bar. A user with roles will display it as a list.
+         * When logged in, any user can navigate to any other user's detail view.
          * 
          * Steps
          *  -# Navigate to http://localhost:8085.
          *  -# Click on the Log On link.
          *  -# Enter the following information:
-         *      - User Name: testuser2
+         *      - User Name: testuser
          *      - Password: password
          *  -# Click the Log On button.
-         *  -# The Profile link should appear.
-         *  -# Click the Profile link.
+         *  -# Navigate to http://localhost:8085/User/Detail/testuser2
          *  -# The page title should be "Task Tracker - User Details - test user2".
          *  -# The User Name should be "testuser2".
          *  -# The First Name should be "test".
@@ -125,7 +124,7 @@ namespace TaskTrackerIntegrationTests.Base
          *  -# The Roles should list "TestRole1" and "TestRole2" in alphabetical order.
          *  -# Click the Log Off link.
          */
-        protected void AnyUserWithRoles_CanNavigateToOwnUserDetailViewFromNavigationBar(IWebDriver driver)
+        protected void AnyUser_CanNavigateToAnyOtherUserDetailView(IWebDriver driver)
         {
             // Navigate to the base url.
             driver.Navigate().GoToUrl("http://localhost:8085/");
@@ -152,26 +151,23 @@ namespace TaskTrackerIntegrationTests.Base
             logOn.Click();
             Wait();
 
-            // Check that the Profile link appeared.
-            IWebElement profileLink = driver.FindElement(By.XPath("//a[text()='Profile']"));
-
-            // Click the Profile link.
-            profileLink.Click();
+            // Navigate to testuser2's detail view.
+            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/testuser2");
             Wait();
 
-            // Check that the page title is "Task Tracker - User Details - test user".
+            // Check that the page title is "Task Tracker - User Details - test user2".
             Assert.That(driver.Title, Is.EqualTo("Task Tracker - User Detaisl - test user2"));
 
-            // Check that the user name is "testuser".
+            // Check that the user name is "testuser2".
             IWebElement userNameSpan = driver.FindElement(By.XPath("//span[@id='UserName'][text()='testuser2']"));
 
             // Check that the first name is "test".
             IWebElement firstNameSpan = driver.FindElement(By.XPath("//span[@id='FirstName'][text()='test']"));
 
-            // Check that the last name is "user".
+            // Check that the last name is "user2".
             IWebElement lastNameSpan = driver.FindElement(By.XPath("//span[@id='LastName'][text()='user2']"));
 
-            // Check that the email is "testuser@test.com".
+            // Check that the email is "testuser2@test.com".
             IWebElement emailSpan = driver.FindElement(By.XPath("//span[@id='Email'][text()='testuser2@test.com']"));
 
             // Check that the time zone is "(GMT-07:00) Arizona".

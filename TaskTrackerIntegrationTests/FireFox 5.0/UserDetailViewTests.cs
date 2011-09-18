@@ -51,11 +51,11 @@ namespace TaskTrackerIntegrationTests.FireFox5
          * This runs the user detail view from navigation bar test with a user that has no roles on the FireFox 5.0 browser.
          */
         [Test]
-        public void AnyUserWithoutRoles_CanNavigateToOwnUserDetailViewFromNavigationBar()
+        public void AnyUser_CanNavigateToOwnUserDetailViewFromNavigationBar()
         {
             this.driver = this.CreateDriver();
 
-            base.AnyUserWithoutRoles_CanNavigateToOwnUserDetailViewFromNavigationBar(this.driver);
+            base.AnyUser_CanNavigateToOwnUserDetailViewFromNavigationBar(this.driver);
         }
 
         /**
@@ -64,11 +64,11 @@ namespace TaskTrackerIntegrationTests.FireFox5
          * This runs the user detail view from navigation bar test with a user that has roles on the FireFox 5.0 browser.
          */
         [Test]
-        public void AnyUserWithRoles_CanNavigateToOwnUserDetailViewFromNavigationBar()
+        public void AnyUser_CanNavigateToAnyOtherUserDetailView()
         {
             this.driver = this.CreateDriver();
 
-            base.AnyUserWithRoles_CanNavigateToOwnUserDetailViewFromNavigationBar(this.driver);
+            base.AnyUser_CanNavigateToAnyOtherUserDetailView(this.driver);
         }
     }
 }

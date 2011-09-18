@@ -51,11 +51,11 @@ namespace TaskTrackerIntegrationTests.InternetExplorer
          * This runs the user detail view from navigation bar test with a user that has no roles on Internet Explorer 8.0 browser.
          */
         [Test]
-        public void AnyUserWithoutRoles_CanNavigateToOwnUserDetailViewFromNavigationBar()
+        public void AnyUser_CanNavigateToOwnUserDetailViewFromNavigationBar()
         {
             this.driver = this.CreateDriver();
             base.EnsureLoggedOut(this.driver);
-            base.AnyUserWithoutRoles_CanNavigateToOwnUserDetailViewFromNavigationBar(this.driver);
+            base.AnyUser_CanNavigateToOwnUserDetailViewFromNavigationBar(this.driver);
         }
 
         /**
@@ -64,11 +64,11 @@ namespace TaskTrackerIntegrationTests.InternetExplorer
          * This runs the user detail view from navigation bar test with a user that has roles on Internet Explorer 8.0 browser.
          */
         [Test]
-        public void AnyUserWithRoles_CanNavigateToOwnUserDetailViewFromNavigationBar()
+        public void AnyUser_CanNavigateToAnyOtherUserDetailView()
         {
             this.driver = this.CreateDriver();
             base.EnsureLoggedOut(this.driver);
-            base.AnyUserWithRoles_CanNavigateToOwnUserDetailViewFromNavigationBar(this.driver);
+            base.AnyUser_CanNavigateToAnyOtherUserDetailView(this.driver);
         }
     }
 }
