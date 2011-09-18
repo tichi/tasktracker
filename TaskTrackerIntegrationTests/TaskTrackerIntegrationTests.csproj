@@ -93,18 +93,25 @@
     <Compile Include="Base\BasicTestFixture.cs" />
     <Compile Include="Base\HomeTests.cs" />
     <Compile Include="Base\LogOnLogOutTests.cs" />
+    <Compile Include="Base\UserDetailViewTests.cs" />
+    <Compile Include="Chrome\UserDetailViewTests.cs" />
     <Compile Include="Chrome\LogOnLogOutTests.cs" />
     <Compile Include="Chrome\HomeTests.cs" />
     <Compile Include="FireFox 3.6\HomeTests.cs" />
     <Compile Include="FireFox 3.6\LogOnLogOutTests.cs" />
+    <Compile Include="FireFox 3.6\UserDetailViewTests.cs" />
     <Compile Include="FireFox 4.0\HomeTests.cs" />
     <Compile Include="FireFox 4.0\LogOnLogOutTests.cs" />
+    <Compile Include="FireFox 4.0\UserDetailViewTests.cs" />
     <Compile Include="FireFox 5.0\HomeTests.cs" />
     <Compile Include="FireFox 5.0\LogOnLogOutTests.cs" />
+    <Compile Include="FireFox 5.0\UserDetailViewTests.cs" />
     <Compile Include="FireFox Current\HomeTests.cs" />
     <Compile Include="FireFox Current\LogOnLogOutTests.cs" />
+    <Compile Include="FireFox Current\UserDetailViewTests.cs" />
     <Compile Include="IE\HomeTests.cs" />
     <Compile Include="IE\LogOnLogOutTests.cs" />
+    <Compile Include="IE\UserDetailViewTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,7 +18,7 @@ namespace TaskTrackerIntegrationTests.FireFox3_6
      * Runs the authentication integration tests on the FireFox 3.6 browser.
      */
     [TestFixture]
-    [Category("FireFox")]
+    [Category("LogOnLogOff")]
     class LogOnLogOutTests : TaskTrackerIntegrationTests.Base.LogOnLogOutTests
     {
         IWebDriver driver;

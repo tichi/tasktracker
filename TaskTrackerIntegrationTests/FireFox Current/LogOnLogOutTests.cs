@@ -18,7 +18,7 @@ namespace TaskTrackerIntegrationTests.FireFoxCurrent
      * Runs the authentication integration tests on the latest FireFox browser.
      */
     [TestFixture]
-    [Category("FireFox")]
+    [Category("LogOnLogOff")]
     class LogOnLogOutTests : TaskTrackerIntegrationTests.Base.LogOnLogOutTests
     {
         IWebDriver driver;

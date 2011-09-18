@@ -18,7 +18,7 @@ namespace TaskTrackerIntegrationTests.Chrome
      * Runs the Home page integration tests on the latest Chrome browser.
      */
     [TestFixture]
-    [Category("Chrome")]
+    [Category("Home")]
     class HomeTests : TaskTrackerIntegrationTests.Base.HomeTests
     {
         IWebDriver driver;

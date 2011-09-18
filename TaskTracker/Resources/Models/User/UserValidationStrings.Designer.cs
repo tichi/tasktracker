@@ -22,14 +22,14 @@ namespace ModelRes {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class NameStrings {
+    public class UserValidationStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal NameStrings() {
+        internal UserValidationStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ModelRes {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TaskTracker.Resources.Models.User.NameStrings", typeof(NameStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TaskTracker.Resources.Models.User.UserValidationStrings", typeof(UserValidationStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,20 @@ namespace ModelRes {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password.
+        ///   Looks up a localized string similar to Invalid user name or password..
         /// </summary>
-        public static string LogOnPassword {
+        public static string InvalidLogOn {
             get {
-                return ResourceManager.GetString("LogOnPassword", resourceCulture);
+                return ResourceManager.GetString("InvalidLogOn", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Name.
+        ///   Looks up a localized string similar to {0} is required..
         /// </summary>
-        public static string LogOnUserName {
+        public static string Required {
             get {
-                return ResourceManager.GetString("LogOnUserName", resourceCulture);
+                return ResourceManager.GetString("Required", resourceCulture);
             }
         }
     }

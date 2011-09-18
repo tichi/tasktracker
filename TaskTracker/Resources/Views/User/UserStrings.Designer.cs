@@ -61,6 +61,15 @@ namespace ViewRes {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Details - {0} {1}.
+        /// </summary>
+        public static string DetailTitle {
+            get {
+                return ResourceManager.GetString("DetailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log On.
         /// </summary>
         public static string LogOnButton {

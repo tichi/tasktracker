@@ -45,6 +45,10 @@ namespace TaskTrackerIntegrationTests.Base
             driver.Navigate().GoToUrl("http://localhost:8085/");
             Wait();
 
+            // Delete all cookies on the profile.
+            driver.Manage().Cookies.DeleteAllCookies();
+            Wait();
+
             // Click on the Log On link.
             IWebElement logOnLink = driver.FindElement(By.XPath("//a[text()='Log On']"));
             logOnLink.Click();
@@ -119,6 +123,9 @@ namespace TaskTrackerIntegrationTests.Base
             // Navigate to the base url.
             driver.Navigate().GoToUrl("http://localhost:8085/");
             Wait();
+
+            // Delete all cookies on the profile.
+            driver.Manage().Cookies.DeleteAllCookies();
 
             // Click on the Log On link.
             IWebElement logOnLink = driver.FindElement(By.XPath("//a[text()='Log On']"));

@@ -85,18 +85,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Domain\Profile.cs" />
+    <Compile Include="Models\Domain\User.cs" />
     <Compile Include="Models\Mapper\Mapper.cs" />
     <Compile Include="Models\ViewModels\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Models\User\NameStrings.Designer.cs">
+    <Compile Include="Resources\Models\User\UserNameStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NameStrings.resx</DependentUpon>
+      <DependentUpon>UserNameStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Models\User\ValidationStrings.Designer.cs">
+    <Compile Include="Resources\Models\User\UserValidationStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ValidationStrings.resx</DependentUpon>
+      <DependentUpon>UserValidationStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Views\Home\HomeStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -113,6 +114,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Exceptions.cs" />
     <Compile Include="Utils\ValidationSummaryAlert.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +168,7 @@
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-styleTable.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
@@ -173,6 +176,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Views\User\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -229,14 +233,14 @@
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Models\User\NameStrings.resx">
+    <EmbeddedResource Include="Resources\Models\User\UserNameStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>NameStrings.Designer.cs</LastGenOutput>
+      <LastGenOutput>UserNameStrings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>ModelRes</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Models\User\ValidationStrings.resx">
+    <EmbeddedResource Include="Resources\Models\User\UserValidationStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ValidationStrings.Designer.cs</LastGenOutput>
+      <LastGenOutput>UserValidationStrings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>ModelRes</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Views\Home\HomeStrings.resx">

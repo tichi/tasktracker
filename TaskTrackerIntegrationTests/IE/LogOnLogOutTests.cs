@@ -18,7 +18,7 @@ namespace TaskTrackerIntegrationTests.IE
      * Runs the authentication integration tests on the Internet Explorer 8.0 browser.
      */
     [TestFixture]
-    [Category("IE")]
+    [Category("LogOnLogOff")]
     class LogOnLogOutTests : TaskTrackerIntegrationTests.Base.LogOnLogOutTests
     {
         IWebDriver driver;
@@ -54,7 +54,7 @@ namespace TaskTrackerIntegrationTests.IE
         public void HomeIndex_LogIn_LogOut()
         {
             this.driver = this.CreateDriver();
-
+            base.EnsureLoggedOut(this.driver);
             base.HomeIndex_LogIn_LogOut(this.driver);
         }
 
@@ -67,7 +67,7 @@ namespace TaskTrackerIntegrationTests.IE
         public void HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication()
         {
             this.driver = this.CreateDriver();
-
+            base.EnsureLoggedOut(this.driver);
             base.HomeIndex_LogOnInvalidUserNameAndPassword_ErrorMessageNoAuthentication(this.driver);
         }
     }

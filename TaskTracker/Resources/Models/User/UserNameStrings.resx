@@ -117,10 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidLogOn" xml:space="preserve">
-    <value>Invalid user name and password.</value>
+  <data name="DetailEmail" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="Required" xml:space="preserve">
-    <value>{0} is required.</value>
+  <data name="DetailFirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="DetailLastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="DetailTimeZone" xml:space="preserve">
+    <value>Time Zone</value>
+  </data>
+  <data name="DetailUserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="LogOnPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LogOnUserName" xml:space="preserve">
+    <value>User Name</value>
   </data>
 </root>

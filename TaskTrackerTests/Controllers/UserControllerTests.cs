@@ -12,7 +12,9 @@ using Moq;
 using NUnit.Framework;
 
 using TaskTracker.Controllers;
+using TaskTracker.Models.Domain;
 using TaskTracker.Models.ViewModels;
+using TaskTracker.Utils;
 
 namespace TaskTrackerTests.Controller
 {
@@ -90,12 +92,12 @@ namespace TaskTrackerTests.Controller
                 UserName = "invaliduser",
                 Password = "password"
             };
-            Mock<IFormsAuthentication> mockIFormsAuthentication = new Mock<IFormsAuthentication>();
+            Mock<IAuthentication> mockIAuthentication = new Mock<IAuthentication>();
 
             Mock<IMembershipService> mockIMembershipService = new Mock<IMembershipService>();
             mockIMembershipService.Setup(m => m.ValidateUser("invaliduser", "password")).Returns(false);
 
-            UserController controller = new UserController(mockIFormsAuthentication.Object, mockIMembershipService.Object);
+            UserController controller = new UserController(mockIAuthentication.Object, mockIMembershipService.Object);
             controller.ModelState.Clear();
 
             // Act
@@ -125,12 +127,12 @@ namespace TaskTrackerTests.Controller
                 Password = "invalidpassword"
             };
 
-            Mock<IFormsAuthentication> mockIFormsAuthentication = new Mock<IFormsAuthentication>();
+            Mock<IAuthentication> mockIAuthentication = new Mock<IAuthentication>();
 
             Mock<IMembershipService> mockIMembershipService = new Mock<IMembershipService>();
             mockIMembershipService.Setup(m => m.ValidateUser("testuser", "invalidpassword")).Returns(false);
 
-            UserController controller = new UserController(mockIFormsAuthentication.Object, mockIMembershipService.Object);
+            UserController controller = new UserController(mockIAuthentication.Object, mockIMembershipService.Object);
             controller.ModelState.Clear();
 
             // Act
@@ -160,12 +162,12 @@ namespace TaskTrackerTests.Controller
                 Password = "password"
             };
 
-            Mock<IFormsAuthentication> mockIFormsAuthentication = new Mock<IFormsAuthentication>();
+            Mock<IAuthentication> mockIAuthentication = new Mock<IAuthentication>();
 
             Mock<IMembershipService> mockIMembershipService = new Mock<IMembershipService>();
             mockIMembershipService.Setup(m => m.ValidateUser("testuser", "password")).Returns(true);
 
-            UserController controller = new UserController(mockIFormsAuthentication.Object, mockIMembershipService.Object);
+            UserController controller = new UserController(mockIAuthentication.Object, mockIMembershipService.Object);
             controller.ModelState.Clear();
 
             // Act
@@ -189,9 +191,9 @@ namespace TaskTrackerTests.Controller
         public void LogOff_GetWithUnauthenticatedUser_RedirectsToDefault()
         {
             // Arrange
-            Mock<IFormsAuthentication> mockIFormsAuthentication = new Mock<IFormsAuthentication>();
+            Mock<IAuthentication> mockIAuthentication = new Mock<IAuthentication>();
             Mock<IMembershipService> mockIMembershipService = new Mock<IMembershipService>();
-            UserController controller = new UserController(mockIFormsAuthentication.Object, mockIMembershipService.Object);
+            UserController controller = new UserController(mockIAuthentication.Object, mockIMembershipService.Object);
 
             Mock<HttpContextBase> mockHttpContext = new Mock<HttpContextBase>();
             mockHttpContext.Setup(c => c.User.Identity.IsAuthenticated).Returns(false);
@@ -218,9 +220,9 @@ namespace TaskTrackerTests.Controller
         public void LogOff_GetWithAuthenticatedUser_RedirectsToDefault()
         {
             // Arrange
-            Mock<IFormsAuthentication> mockIFormsAuthentication = new Mock<IFormsAuthentication>();
+            Mock<IAuthentication> mockIAuthentication = new Mock<IAuthentication>();
             Mock<IMembershipService> mockIMembershipService = new Mock<IMembershipService>();
-            UserController controller = new UserController(mockIFormsAuthentication.Object, mockIMembershipService.Object);
+            UserController controller = new UserController(mockIAuthentication.Object, mockIMembershipService.Object);
 
             Mock<HttpContextBase> mockHttpContext = new Mock<HttpContextBase>();
             mockHttpContext.Setup(c => c.User.Identity.IsAuthenticated).Returns(true);
@@ -236,6 +238,85 @@ namespace TaskTrackerTests.Controller
 
             Assert.That(redirectResult.Permanent, Is.False);
             Assert.That(redirectResult.Url, Is.EqualTo("~/"));
+        }
+
+        /**
+         * \brief Test that the Detail method throws a NoSuchRecordException with no id.
+         * 
+         * Defines the unit test that runs the Detail method with no id, expecting a NoSuchRecordException to be thrown.
+         */
+        [Test]
+        public void Detail_GetWithNoId_ThrowsNoSuchRecordException()
+        {
+            // Arrange
+            Mock<IAuthentication> mockIAuthentication = new Mock<IAuthentication>();
+            Mock<IMembershipService> mockIMembershipService = new Mock<IMembershipService>();
+            UserController controller = new UserController(mockIAuthentication.Object, mockIMembershipService.Object);
+
+            Mock<HttpContextBase> mockHttpContext = new Mock<HttpContextBase>();
+            mockHttpContext.Setup(c => c.User.Identity.IsAuthenticated).Returns(true);
+            controller.ControllerContext = new ControllerContext(mockHttpContext.Object, new RouteData(), controller);
+
+            // Act and assert.
+            Assert.Throws<NoSuchRecordException>(() => controller.Detail(null));
+        }
+
+        /**
+         * \brief Test that the Detail method returns a ViewResult.
+         * 
+         * Defines the unit test that runs the Detail method, expecting a ViewResult with the requested user's information.
+         */
+        [Test]
+        public void Detail_GetWithId_ReturnsViewResult()
+        {
+            // Arrange
+            Mock<IAuthentication> mockIAuthentication = new Mock<IAuthentication>();
+            Mock<IMembershipService> mockIMembershipService = new Mock<IMembershipService>();
+
+            Mock<IUser> mockIUser = new Mock<IUser>();
+            mockIUser.Setup(m => m.UserName).Returns("testuser");
+            mockIUser.Setup(m => m.Email).Returns("testuser@test.com");
+            mockIUser.Setup(m => m.FirstName).Returns("test");
+            mockIUser.Setup(m => m.LastName).Returns("user");
+            mockIUser.Setup(m => m.TimeZone).Returns("US Mountain Standard Time");
+            mockIUser.Setup(m => m.Id).Returns("11111111-1111-1111-1111-111111111111");
+
+            mockIMembershipService.Setup(m => m.GetUser("11111111-1111-1111-1111-111111111111", false)).Returns(mockIUser.Object);
+
+            UserController controller = new UserController(mockIAuthentication.Object, mockIMembershipService.Object);
+
+            Mock<HttpContextBase> mockHttpContext = new Mock<HttpContextBase>();
+            mockHttpContext.Setup(c => c.User.Identity.IsAuthenticated).Returns(true);
+            controller.ControllerContext = new ControllerContext(mockHttpContext.Object, new RouteData(), controller);
+
+            UserDetailViewModel model = new UserDetailViewModel()
+            {
+                UserName = "testuser",
+                Email = "testuser@test.com",
+                FirstName = "test",
+                LastName = "user",
+                TimeZone = "(UTC-07:00) Arizona",
+                Id = "11111111-1111-1111-1111-111111111111"
+            };
+
+            // Act
+            ActionResult result = controller.Detail("11111111-1111-1111-1111-111111111111");
+
+            // Assert
+            Assert.That(result, Is.InstanceOf(typeof(ViewResult)));
+
+            ViewResult viewResult = result as ViewResult;
+
+            Assert.That(viewResult.ViewName, Is.EqualTo("Detail"));
+
+            Assert.That(viewResult.Model, Is.InstanceOf(typeof(UserDetailViewModel)));
+
+            UserDetailViewModel userDetailViewModel = viewResult.Model as UserDetailViewModel;
+            Assert.That(userDetailViewModel.UserName, Is.EqualTo(model.UserName));
+            Assert.That(userDetailViewModel.Email, Is.EqualTo(model.Email));
+            Assert.That(userDetailViewModel.FirstName, Is.EqualTo(model.FirstName));
+            Assert.That(userDetailViewModel.LastName, Is.EqualTo(model.LastName));
+            Assert.That(userDetailViewModel.TimeZone, Is.EqualTo(model.TimeZone));
         }
     }
 }
