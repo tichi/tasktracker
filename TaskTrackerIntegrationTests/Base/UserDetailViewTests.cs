@@ -200,5 +200,35 @@ namespace TaskTrackerIntegrationTests.Base
             // Check that the page title is "Task Tracker - Log On".
             Assert.That(driver.Title, Is.EqualTo("Task Tracker - Log On"));
         }
+
+        /**
+         * \brief Attempting to access the user detail view for an id that doesn't exist results in a user-friendly error.
+         * 
+         * When logged in, the user sees a user-friendly error message of "This record does not exist." when attempting to access the
+         * detail view of a user with an id that doesn't exist in the database or can't be parsed into a guid.
+         * 
+         * Steps:
+         *  -# Navigate to http://localhost:8085.
+         *  -# Click the Log On link.
+         *  -# Enter the following data:
+         *      - User Name: testuser
+         *      - Password: password
+         *  -# Click the Log On button.
+         *  -# Navigate to http://localhost:8085/User/Detail/12345.
+         *  -# The page title should be "Task Tracker - Error".
+         *  -# The error message "This record does not exist." should appear.
+         *  -# Navigate to http://localhost:8085/User/Detail/12345678-abcd-1234-abcd-1234567890ab.
+         *  -# The page title should be "Task Tracker - Error".
+         *  -# The error message "This record does not exist." should appear.
+         *  -# Navigate to http://localhost:8085.
+         *  -# Click the Log Out link.
+         */
+        protected void AnyUser_NavigatingToUserDetailWithUnknownId_ShowsUserFriendlyError()
+        {
+            /**
+             * \todo Implement the AnyUser_NavigatingToUserDetailWithUnknownId_ShowsUserFriendlyError integration test.
+             */
+            throw new NotImplementedException();
+        }
     }
 }
