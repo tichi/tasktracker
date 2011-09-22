@@ -223,12 +223,51 @@ namespace TaskTrackerIntegrationTests.Base
          *  -# Navigate to http://localhost:8085.
          *  -# Click the Log Out link.
          */
-        protected void AnyUser_NavigatingToUserDetailWithUnknownId_ShowsUserFriendlyError()
+        protected void AnyUser_NavigatingToUserDetailWithUnknownId_ShowsUserFriendlyError(IWebDriver driver)
         {
-            /**
-             * \todo Implement the AnyUser_NavigatingToUserDetailWithUnknownId_ShowsUserFriendlyError integration test.
-             */
-            throw new NotImplementedException();
+            // Navigate to http://localhost:8085.
+            driver.Navigate().GoToUrl("http://localhost:8085");
+            Wait();
+
+            // Click on the Log On link.
+            driver.FindElement(By.XPath("//a[text()='Log On']")).Click();
+            Wait();
+
+            // Enter the following data:
+            driver.FindElement(By.Id("UserName")).SendKeys("testuser");
+            driver.FindElement(By.Id("Password")).SendKeys("password");
+
+            // Click the Log On button.
+            driver.FindElement(By.Id("LogOn")).Click();
+            Wait();
+
+            // Navigate to http://localhost:8085/User/Detail/12345.
+            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/12345");
+            Wait();
+
+            // The page title should be "Task Tracker - Error".
+            Assert.That(driver.Title, Is.EqualTo("Task Tracker - Error"));
+
+            // The error message "This record does not exist." should appear.
+            driver.FindElement(By.XPath("//span[@alert=''][text()='This record does not exist.']"));
+
+            // Navigate to http://localhost:8085/User/Detail/12345678-abcd-1234-abcd-1234567890ab.
+            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/12345678-abcd-1234-abcd-1234567890ab");
+            Wait();
+
+            // The page title should be "Task Tracker - Error".
+            Assert.That(driver.Title, Is.EqualTo("Task Tracker - Error"));
+
+            // The error message "This record does not exist." should appear.
+            driver.FindElement(By.XPath("//span[@alert=''][text()='This record does not exist.']"));
+
+            // Navigate to http://localhost:8085.
+            driver.Navigate().GoToUrl("http://localhost:8085");
+            Wait();
+
+            // Click the Log Out link.
+            driver.FindElement(By.XPath("//a[text()='Log Off']")).Click();
+            Wait();
         }
     }
 }
