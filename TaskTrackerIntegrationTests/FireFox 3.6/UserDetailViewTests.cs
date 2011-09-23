@@ -83,5 +83,19 @@ namespace TaskTrackerIntegrationTests.FireFox3_6
 
             base.UnauthenticatedUser_IsRedirectedToLogOn(this.driver);
         }
+
+        /**
+         * \brief Attempting to access the user detail view for an id that doesn't exist results in a user-friendly error.
+         * 
+         * When logged in, the user sees a user-friendly error message of "This record does not exist." when attempting to access the
+         * detail view of a user with an id that doesn't exist in the database or can't be parsed into a guid.
+         */
+        [Test]
+        public void AnyUser_NavigatingToUserDetailWithUnknownId_ShowsUserFriendlyError()
+        {
+            this.driver = this.CreateDriver();
+
+            base.AnyUser_NavigatingToUserDetailWithUnknownId_ShowsUserFriendlyError(driver);
+        }
     }
 }

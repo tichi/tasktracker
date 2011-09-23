@@ -200,5 +200,74 @@ namespace TaskTrackerIntegrationTests.Base
             // Check that the page title is "Task Tracker - Log On".
             Assert.That(driver.Title, Is.EqualTo("Task Tracker - Log On"));
         }
+
+        /**
+         * \brief Attempting to access the user detail view for an id that doesn't exist results in a user-friendly error.
+         * 
+         * When logged in, the user sees a user-friendly error message of "This record does not exist." when attempting to access the
+         * detail view of a user with an id that doesn't exist in the database or can't be parsed into a guid.
+         * 
+         * Steps:
+         *  -# Navigate to http://localhost:8085.
+         *  -# Click the Log On link.
+         *  -# Enter the following data:
+         *      - User Name: testuser
+         *      - Password: password
+         *  -# Click the Log On button.
+         *  -# Navigate to http://localhost:8085/User/Detail/12345.
+         *  -# The page title should be "Task Tracker - Error".
+         *  -# The error message "This record does not exist." should appear.
+         *  -# Navigate to http://localhost:8085/User/Detail/12345678-abcd-1234-abcd-1234567890ab.
+         *  -# The page title should be "Task Tracker - Error".
+         *  -# The error message "This record does not exist." should appear.
+         *  -# Navigate to http://localhost:8085.
+         *  -# Click the Log Out link.
+         */
+        protected void AnyUser_NavigatingToUserDetailWithUnknownId_ShowsUserFriendlyError(IWebDriver driver)
+        {
+            // Navigate to http://localhost:8085.
+            driver.Navigate().GoToUrl("http://localhost:8085");
+            Wait();
+
+            // Click on the Log On link.
+            driver.FindElement(By.XPath("//a[text()='Log On']")).Click();
+            Wait();
+
+            // Enter the following data:
+            driver.FindElement(By.Id("UserName")).SendKeys("testuser");
+            driver.FindElement(By.Id("Password")).SendKeys("password");
+
+            // Click the Log On button.
+            driver.FindElement(By.Id("LogOn")).Click();
+            Wait();
+
+            // Navigate to http://localhost:8085/User/Detail/12345.
+            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/12345");
+            Wait();
+
+            // The page title should be "Task Tracker - Error".
+            Assert.That(driver.Title, Is.EqualTo("Task Tracker - Error"));
+
+            // The error message "This record does not exist." should appear.
+            driver.FindElement(By.XPath("//span[@error=''][text()='This record does not exist.']"));
+
+            // Navigate to http://localhost:8085/User/Detail/12345678-abcd-1234-abcd-1234567890ab.
+            driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/12345678-abcd-1234-abcd-1234567890ab");
+            Wait();
+
+            // The page title should be "Task Tracker - Error".
+            Assert.That(driver.Title, Is.EqualTo("Task Tracker - Error"));
+
+            // The error message "This record does not exist." should appear.
+            driver.FindElement(By.XPath("//span[@error=''][text()='This record does not exist.']"));
+
+            // Navigate to http://localhost:8085.
+            driver.Navigate().GoToUrl("http://localhost:8085");
+            Wait();
+
+            // Click the Log Out link.
+            driver.FindElement(By.XPath("//a[text()='Log Off']")).Click();
+            Wait();
+        }
     }
 }

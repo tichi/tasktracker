@@ -1,15 +1,11 @@
-﻿@{
-    Layout = null;
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>@ViewRes.SharedStrings.ErrorTitle</title>
-</head>
-<body>
-    <h2>
-        @ViewRes.SharedStrings.ErrorMessage
-    </h2>
-</body>
-</html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#errors").addError("@Model.Exception.Message");
+    });
+</script>

@@ -21,6 +21,7 @@ namespace TaskTracker.Controllers
      * 
      * Defines the actions for the user pages.
      */
+    [HandleError(ExceptionType=typeof(TaskTrackerException), View="Error")]
     public class UserController : Controller
     {
         /**
@@ -215,7 +216,26 @@ namespace TaskTracker.Controllers
          */
         public IUser GetUser(string userId, bool userIsOnline = false)
         {
-            return new User(Membership.GetUser(new Guid(userId), userIsOnline));
+            Guid guid;
+            try
+            {
+                guid = new Guid(userId);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            MembershipUser user = Membership.GetUser(guid, userIsOnline);
+
+            if (user != null)
+            {
+                return new User(Membership.GetUser(guid, userIsOnline));
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
