@@ -52,7 +52,7 @@ namespace TaskTracker.DB
                 Roles.AddUserToRole("admin", "Administrator");
             }
 
-            if (ApplicationServices.GetInitialCatalog() == "tasktracker_testing")
+            if (ApplicationServices.GetInitialCatalog() == "tasktracker_testing" || ApplicationServices.GetInitialCatalog() == "tasktracker_dev")
             {
                 if (Membership.GetUser("testuser", false) == null)
                 {

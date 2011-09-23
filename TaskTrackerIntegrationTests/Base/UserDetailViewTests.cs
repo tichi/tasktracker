@@ -249,7 +249,7 @@ namespace TaskTrackerIntegrationTests.Base
             Assert.That(driver.Title, Is.EqualTo("Task Tracker - Error"));
 
             // The error message "This record does not exist." should appear.
-            driver.FindElement(By.XPath("//span[@alert=''][text()='This record does not exist.']"));
+            driver.FindElement(By.XPath("//span[@error=''][text()='This record does not exist.']"));
 
             // Navigate to http://localhost:8085/User/Detail/12345678-abcd-1234-abcd-1234567890ab.
             driver.Navigate().GoToUrl("http://localhost:8085/User/Detail/12345678-abcd-1234-abcd-1234567890ab");
@@ -259,7 +259,7 @@ namespace TaskTrackerIntegrationTests.Base
             Assert.That(driver.Title, Is.EqualTo("Task Tracker - Error"));
 
             // The error message "This record does not exist." should appear.
-            driver.FindElement(By.XPath("//span[@alert=''][text()='This record does not exist.']"));
+            driver.FindElement(By.XPath("//span[@error=''][text()='This record does not exist.']"));
 
             // Navigate to http://localhost:8085.
             driver.Navigate().GoToUrl("http://localhost:8085");
